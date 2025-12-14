@@ -36,7 +36,7 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({ title, buttons, icon }) => 
               <a
                 key={index}
                 href={button.action}
-                className={`flex flex-col items-center justify-center w-full min-h-[100px] p-4 rounded-lg font-medium text-center text-sm transition duration-200 
+                className={`flex flex-col items-center justify-center w-full min-h-25 p-4 rounded-lg font-medium text-center text-sm transition duration-200 
                   ${button.style === 'primary' 
                     ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg' 
                     : 'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-secondary/50'
