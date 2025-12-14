@@ -1,7 +1,7 @@
-const Card = ({ title, subtitle, iconClass }: { title: string, subtitle: string, iconClass: string }) => (
+const Card = ({ title, subtitle, iconClass,img  }: { title: string, subtitle: string, iconClass: string,img:string }) => (
     <div className="bg-card rounded-xl shadow-2xl overflow-hidden border border-border transition-transform duration-300 hover:shadow-primary/30 hover:-translate-y-1">
         <div className={`h-48 flex items-center justify-center p-6 ${iconClass}`}>
-            <span className="text-6xl text-card-foreground/50 font-bold">VISUAL</span>
+            <img width={148} height={148} src={img} alt="" />
         </div>
         <div className="p-6">
             <h3 className="text-xl font-bold text-card-foreground mb-1">{title}</h3>
@@ -66,16 +66,18 @@ return (
                         title="Resume Optimizer" 
                         subtitle="Detailed, ATS-beating resume analysis and revision tools." 
                         iconClass="bg-primary/10"
-                    />
+                        img="https://img.icons8.com/glassmorphism/96/edit-file.png"/>
                     <Card 
                         title="Check for ATS" 
                         subtitle="Verify Resume with ATS ratings." 
                         iconClass="bg-secondary/10"
+                        img="https://img.icons8.com/glassmorphism/96/edit-file.png"
                     />
                     <Card 
                         title="Resume Creator" 
                         subtitle="Make a in-general Resume with high ATS rankings." 
                         iconClass="bg-accent/10"
+                        img="https://img.icons8.com/glassmorphism/96/edit-file.png"
                     />
                 </div>
             </div>
