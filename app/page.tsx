@@ -1,6 +1,5 @@
-// src/App.tsx
 
-'use client'; // <-- THIS FIXES THE ERROR
+'use client';
 import { signIn } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
 import Landingpage from './components/Pages/landingpage';
