@@ -9,7 +9,7 @@ export default function LoginPage() {
         <p className="text-gray-600 text-sm mb-10">Sign in to continue to your account</p>
         
         <button
-          onClick={()=> signIn('google')}
+          onClick={()=> signIn('google', ({callbackUrl: '/dashboard'}))}
           className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-white border-2 border-gray-300 rounded-lg text-gray-700 font-medium text-base hover:bg-gray-50 hover:border-blue-500 hover:shadow-lg active:scale-98 transition-all duration-300"
         >
           <img width="48" height="48" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>
