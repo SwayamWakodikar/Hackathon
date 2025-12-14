@@ -10,5 +10,5 @@ const page = () => {
         <SignupFormDemo/>
     </div>
   )
-}
+} 
 export default page
