@@ -2,7 +2,7 @@
 'use client';
 import { signIn } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
-import Landingpage from './components/Pages/landingpage';
+import Landingpage from '../components/Pages/landingpage';
 
 // --- Main Application Component ---
 const App = () => { 
