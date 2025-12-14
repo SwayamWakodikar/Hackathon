@@ -2,16 +2,12 @@
 
 import React from 'react'
 import { signIn } from 'next-auth/react'
-
+import LoginPage from '@/components/LoginPage'
 const page = () => {
   return (
-    <div>login
-        <button onClick={()=> signIn('google')}>
-            signIn with google
-        </button>
-
+    <div className=''>
+        <LoginPage/>
     </div>
   )
 }
-
 export default page
