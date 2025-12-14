@@ -63,10 +63,11 @@ const NavBar: React.FC = () => {
                         <ThemeIcon />
                     </button>
                     <button
-                        className="px-6 py-2 text-sm font-semibold bg-primary text-primary-foreground rounded-lg transition duration-300 hover:opacity-90 shadow-md"
+                        className="cursor-pointer flex px-6 py-2 text-sm font-semibold bg-primary text-primary-foreground rounded-lg transition duration-300 hover:opacity-90 shadow-md"
                         onClick={()=> signIn('google')}
                     >
-                        Join Us for Free
+                        <img width="20" height="20" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>  Sign in With Google
+                        
                     </button>
                 </div>
             </div>
