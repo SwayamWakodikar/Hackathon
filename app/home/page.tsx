@@ -1,5 +1,5 @@
 import React from 'react'
-import Homepage from '@/components/Pages/homepage'
+import Homepage from '@/components/Pages/Homepage'
 const page = () => {
   return (
     <>
@@ -7,5 +7,4 @@ const page = () => {
     </>
   )
 }
-
 export default page
