@@ -26,7 +26,7 @@ const AIBasedTrainerSection: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <Card 
                         title="AI Interview Coach" 
-                        subtitle="Practice hyper-realistic mock interviews with AI feedback.    ." 
+                        subtitle="Practice hyper-realistic mock interviews with AI feedback." 
                         iconClass="bg-primary/10"
                     
                     />
