@@ -2,11 +2,11 @@ import React from 'react';
 import { signIn } from 'next-auth/react'
 export default function LoginPage() {
   return (
-    <div className="bg-gray-200 min-h-screen flex items-center justify-center p-5 ">
-      <div className="bg-white rounded-2xl shadow-2xl p-12 w-full max-w-md text-center">
+    <div className="bg-black min-h-screen flex items-center justify-center p-5 ">
+      <div className="bg-gray-700/50 rounded-2xl shadow-2xl p-12 w-full max-w-md text-center">
         {/* <div className="text-5xl mb-3">🔐</div> */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-3">Login</h1>
-        <p className="text-gray-600 text-sm mb-10">Sign in to continue to your account</p>
+        <h1 className="text-3xl font-bold text-white mb-3">Login</h1>
+        <p className="text-gray-100 text-sm mb-10">Sign in to continue to your account</p>
         
         <button
           onClick={()=> signIn('google')}
