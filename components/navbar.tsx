@@ -66,10 +66,26 @@ const NavBar: React.FC = () => {
   return (
     <nav className="select-none  fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl backdrop-blur-lg rounded-full flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-3 md:py-4 z-50  border border-border bg-card/80 dark:bg-card/80 shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="/" className="text-5xl font-extrabold text-primary">
+        <button onClick={(e) => handleSmoothScroll(e, "hero")} className="text-5xl font-extrabold text-primary">
           Vplace
-        </a>
+        </button>
+        <div>
+          <div className="flex items-center space-x-8">
+            <button
 
+              className="cursor-pointer px-4 py-2 text-xl font-semibold text-gray-900 dark:text-white hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition duration-300"
+              onClick={(e) => handleSmoothScroll(e, "ResumeBuilder")}
+            >
+              Resume Enhancer
+            </button>
+            <button
+              className="cursor-pointer px-4 py-2 text-xl font-semibold text-gray-900 dark:text-white hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition duration-300"
+              onClick={(e) => handleSmoothScroll(e, "AI Trainer")}
+            >
+              AI Trainer
+            </button>
+          </div>
+        </div>
         <div className="flex items-center space-x-3">
           <button
             onClick={toggleTheme}
@@ -97,3 +113,12 @@ const NavBar: React.FC = () => {
   );
 };
 export default NavBar;
+const handleSmoothScroll = (
+  e: React.MouseEvent<HTMLButtonElement>,
+  id: string
+): void => {
+  e.preventDefault();
+
+  const anchor = document.getElementById(id);
+  anchor?.scrollIntoView({ behavior: "smooth" });
+};

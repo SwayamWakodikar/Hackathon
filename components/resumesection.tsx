@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, FileText, Zap, Shield } from 'lucide-react'
+import { ArrowRight, Sparkles, FileText, Zap, Shield } from "lucide-react";
 const Card = ({
   title,
   subtitle,
@@ -33,7 +33,6 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({
   buttons,
   icon,
 }) => {
-  // Determine the grid columns: 3 for resume, 2 for trainer
   const cols = buttons.length === 3 ? 3 : 2;
 
   return (
@@ -65,74 +64,34 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({
 const ResumeEnhancerSection: React.FC = () => {
   return (
     <section id="ResumeBuilder" className="py-20 ">
-      <div className="container mx-auto px-4 max-w-7xl mt-20">
-        <h2 className="text-6xl font-extrabold text-foreground mb-4 text-center">
+      <div className="container mx-auto px-4 max-w-7xl mt-30">
+        <h2 className="text-6xl font-extrabold text-foreground  mb-4 text-center">
           Resume Enhancer
         </h2>
-        <p className="text-lg text-muted-foreground mb-12 text-center">
+        <p className="text-lg text-muted-foreground mb-40 text-center">
           Unlock high-paying roles with our specialized training paths.
         </p>
-
-        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-70">
-          <a href="/resume/home">
-            <Card
-              title="Resume Optimizer"
-              subtitle="Detailed, ATS-beating resume analysis and revision tools."
-              iconClass="bg-secondary/10"
-              img="https://img.icons8.com/glassmorphism/96/edit-file.png"
-            />
-          </a>
-          <a href="/resume/home">
-            <Card
-              title="Check for ATS"
-              subtitle="Verify Resume with ATS ratings."
-              iconClass="bg-secondary/10"
-              img="https://img.icons8.com/glassmorphism/96/edit-file.png"
-            />
-          </a>
-
-          <a href="/resume/home">
-            <Card
-              title="Resume Creator"
-              subtitle="Make a in-general Resume with high ATS rankings."
-              iconClass="bg-secondary/10"
-              img="https://img.icons8.com/glassmorphism/96/edit-file.png"
-            />
-          </a>
-        </div> */}
-        <section id="features" className="px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center">
-          </div>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <div key={index} className="rounded-lg border bg-card p-6 shadow-sm">
-                <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3">
-                  {feature.icon}
+        <section id="features" className="mb-60 px-4 mt-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center"></div>
+            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="rounded-lg border bg-card p-6 shadow-sm"
+                >
+                  <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold">{feature.title}</h3>
+                  <p className="mt-2 text-muted-foreground">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold">{feature.title}</h3>
-                <p className="mt-2 text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-        {/* <div className="flex justify-center">
-          <button
-            className="cursor-pointer"
-            onClick={(e) => handleSmoothScroll(e, "AI Trainer")}
-          >
-            <img
-              width="50"
-              height="50"
-              src="https://img.icons8.com/ios/50/FFFFFF/circled-down-2.png"
-              alt="circled-down-2"
-            />
-          </button>
-        </div>
-        <span className="flex justify-center text-gray-300 mt-3">
-          More features ahead...
-        </span> */}
+        </section>
       </div>
     </section>
   );
@@ -151,24 +110,25 @@ const handleSmoothScroll = (
 };
 
 const features = [
-    {
-      icon: <Sparkles className="h-8 w-8" />,
-      title: 'AI-Powered Generation',
-      description: 'Get professionally crafted resumes using advanced AI algorithms'
-    },
-    {
-      icon: <FileText className="h-8 w-8" />,
-      title: 'Multiple Templates',
-      description: 'Choose from various professional resume templates'
-    },
-    {
-      icon: <Zap className="h-8 w-8" />,
-      title: 'Fast & Efficient',
-      description: 'Generate a complete resume in under 2 minutes'
-    },
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: 'Privacy Focused',
-      description: 'Your data is never stored or shared with third parties'
-    }
-  ]
+  {
+    icon: <Sparkles className="h-8 w-8" />,
+    title: "AI-Powered Generation",
+    description:
+      "Get professionally crafted resumes using advanced AI algorithms",
+  },
+  {
+    icon: <FileText className="h-8 w-8" />,
+    title: "Multiple Templates",
+    description: "Choose from various professional resume templates",
+  },
+  {
+    icon: <Zap className="h-8 w-8" />,
+    title: "Fast & Efficient",
+    description: "Generate a complete resume in under 2 minutes",
+  },
+  {
+    icon: <Shield className="h-8 w-8" />,
+    title: "Privacy Focused",
+    description: "Your data is never stored or shared with third parties",
+  },
+];

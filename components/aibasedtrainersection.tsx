@@ -15,7 +15,7 @@ const Card = ({ title, subtitle, iconClass }: { title: string, subtitle: string,
 const AIBasedTrainerSection: React.FC = () => {
     return (
         <section id="AI Trainer" className="py-20">
-            <div className="container mx-auto px-4 max-w-7xl">
+            <div className="container mt-30 mx-auto px-4 max-w-7xl">
                 <h2 className="text-6xl font-extrabold text-foreground mb-4 text-center">
                      AI-based Trainer
                 </h2>
