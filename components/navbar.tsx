@@ -66,9 +66,9 @@ const NavBar: React.FC = () => {
   return (
     <nav className="select-none  fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl backdrop-blur-lg rounded-full flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-3 md:py-4 z-50  border border-border bg-card/80 dark:bg-card/80 shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="/" className="text-5xl font-extrabold text-primary">
+        <button onClick={(e) => handleSmoothScroll(e, "hero")} className="text-5xl font-extrabold text-primary">
           Vplace
-        </a>
+        </button>
         <div>
           <div className="flex items-center space-x-8">
             <button

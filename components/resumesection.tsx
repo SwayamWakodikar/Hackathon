@@ -64,11 +64,11 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({
 const ResumeEnhancerSection: React.FC = () => {
   return (
     <section id="ResumeBuilder" className="py-20 ">
-      <div className="container mx-auto px-4 max-w-7xl mt-20">
-        <h2 className="text-6xl font-extrabold text-foreground mb-4 text-center">
+      <div className="container mx-auto px-4 max-w-7xl mt-30">
+        <h2 className="text-6xl font-extrabold text-foreground  mb-4 text-center">
           Resume Enhancer
         </h2>
-        <p className="text-lg text-muted-foreground mb-60 text-center">
+        <p className="text-lg text-muted-foreground mb-40 text-center">
           Unlock high-paying roles with our specialized training paths.
         </p>
         <section id="features" className="mb-60 px-4 mt-20 sm:px-6 lg:px-8">

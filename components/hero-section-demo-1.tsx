@@ -18,7 +18,7 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({
   const cols = buttons.length === 3 ? 3 : 2;
 
   return (
-    <div className="bg-card p-8 rounded-xl shadow-2xl border border-border">
+    <div  className="bg-card p-8 rounded-xl shadow-2xl border border-border">
       <div className="flex items-center mb-8">
         <span className="text-4xl mr-3">{icon}</span>
         <h2 className="text-3xl font-bold text-card-foreground">{title}</h2>
@@ -44,9 +44,9 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({
 };
 export default function HeroSectionOne() {
   return (
-    <div className="relative flex items-center justify-center min-h-screen">
-      <div className="px-4 py-10 md:py-20 mt-15">
-        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-white">
+    <div id='hero' className="relative flex items-center justify-center min-h-screen">
+      <div className="px-4 py-10 md:py-20 mt-10 sm:mt-20 lg:mt-32 w-full">
+        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-white">
           {"Land Your Dream Job with Vplace"
             .split(" ")
             .map((word, index) => (
@@ -61,7 +61,7 @@ export default function HeroSectionOne() {
                 }}
                 className={`mr-2 inline-block ${
                   word === "Vplace"
-                    ? "text-9xl text-indigo-600 dark:text-indigo-400"
+                    ? "text-7xl text-indigo-600 dark:text-indigo-400"
                     : ""
                 }`}
               >
@@ -83,7 +83,7 @@ export default function HeroSectionOne() {
             duration: 0.3,
             delay: 0.8,
           }}
-          className="mt-5 relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400 mb-20"
+          className="mt-5 relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
         >
           With AI, you can launch your website in hours, not days. Try our best
           in class, state of the art, cutting edge AI tools to get your website
