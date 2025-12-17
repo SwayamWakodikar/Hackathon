@@ -57,15 +57,51 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
     }));
   };
 
-  const handleSubmit = () => {
-    // Basic validation
-    if (!formData.name || !formData.email) {
-      alert('Please fill in at least your name and email');
-      return;
-    }
-    onGenerate(formData);
-  };
+  // In your ManualTab.tsx or wherever you handle the form submission
 
+const handleSubmit = async () => {
+  if (!formData.name || !formData.email) {
+    alert('Please fill in at least your name and email');
+    return;
+  }
+  
+  try {
+    const response = await fetch('/api/generate-resume', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+    
+    if (response.ok) {
+      const result = await response.json();
+      
+      // Display in console
+      console.log("Generated Markdown Resume:");
+      console.log(result.resume);
+      
+      // Download as .md file
+      const blob = new Blob([result.resume], { type: 'text/markdown' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = result.filename || 'resume.md';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      // Also show preview
+      alert(`Resume generated successfully! Downloading ${result.filename}`);
+      
+    } else {
+      const error = await response.json();
+      alert(`Failed to generate resume: ${error.error || 'Unknown error'}`);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred while generating your resume');
+  }
+};
   return (
     <Card 
       className={`max-w-3xl mx-auto ${
