@@ -105,7 +105,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-white' : ''}
+                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
                 required
               />
             </div>
@@ -123,7 +123,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-white' : ''}
+                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
                 required
               />
             </div>
@@ -154,7 +154,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="+1 (555) 000-0000"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-white' : ''}
+                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
               />
             </div>
             <div>
@@ -171,7 +171,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="City, State"
                 value={formData.address}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-white' : ''}
+                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
               />
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
             value={formData.education}
             onChange={handleInputChange}
             rows={3}
-            className={isDark ? 'bg-gray-700 border-gray-600 text-white' : ''}
+            className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
           />
         </div>
 
