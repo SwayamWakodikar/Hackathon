@@ -45,7 +45,7 @@ const FeatureBlock: React.FC<FeatureBlockProps> = ({
 export default function HeroSectionOne() {
   return (
     <div id='hero' className="relative flex items-center justify-center min-h-screen">
-      <div className="px-4 py-10 md:py-20 mt-10 sm:mt-20 lg:mt-32 w-full">
+      <div className="px-4 py-10 md:py-20 mt-10 sm:mt-20 lg:mt-15 w-full">
         <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-white">
           {"Land Your Dream Job with Vplace"
             .split(" ")
