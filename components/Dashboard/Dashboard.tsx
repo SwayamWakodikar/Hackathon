@@ -7,7 +7,7 @@ import ResumePreviewModal from './ResumePreviewModal';
 const Dashboard: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [resumeMarkdown, setResumeMarkdown] = useState<string>('');
-
+  
   // Example: This would be called when user generates a resume
   const handleGenerateResume = (generatedMarkdown: string) => {
     setResumeMarkdown(generatedMarkdown);

@@ -25,11 +25,7 @@ export default function Homepage() {
 
   return (
     <div 
-      className={`min-h-screen transition-colors duration-300 ${
-        isDark 
-          ? 'bg-gray-900' 
-          : 'bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50'
-      }`}
+      className={`min-h-screen transition-colors duration-300 bg-white dark:bg-black`}
     >
       <Header isDark={isDark} setIsDark={setIsDark} />
       <HeroSection isDark={isDark} />

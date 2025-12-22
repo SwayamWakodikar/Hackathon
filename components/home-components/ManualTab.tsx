@@ -58,7 +58,6 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
   };
 
   const handleSubmit = () => {
-    // Basic validation
     if (!formData.name || !formData.email) {
       alert('Please fill in at least your name and email');
       return;
@@ -66,37 +65,32 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
     onGenerate(formData);
   };
 
+  const inputClass = isDark 
+    ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-500' 
+    : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400';
+
+  const labelClass = isDark ? 'text-slate-300' : 'text-gray-700';
+  const headingClass = isDark ? 'text-white' : 'text-gray-900';
+
   return (
-    <Card 
-      className={`max-w-3xl mx-auto ${
-        isDark ? 'bg-gray-800 border-gray-700' : 'bg-white shadow-xl'
-      }`}
-    >
+    <Card className={isDark ? 'max-w-3xl mx-auto bg-slate-900 border-slate-800' : 'max-w-3xl mx-auto bg-white border-gray-200'}>
       <CardHeader>
-        <CardTitle className={isDark ? 'text-white' : ''}>
+        <CardTitle className={headingClass}>
           Enter Your Details
         </CardTitle>
-        <CardDescription className={isDark ? 'text-gray-400' : ''}>
+        <CardDescription className={isDark ? 'text-slate-400' : 'text-gray-600'}>
           Fill in your information and let AI create your resume
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Personal Information */}
         <div className="space-y-4">
-          <h3 
-            className={`text-lg font-semibold flex items-center gap-2 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <h3 className={`text-lg font-medium flex items-center gap-2 ${headingClass}`}>
             <User className="w-5 h-5" />
             Personal Information
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label 
-                htmlFor="name" 
-                className={isDark ? 'text-gray-300' : ''}
-              >
+              <Label htmlFor="name" className={labelClass}>
                 Full Name *
               </Label>
               <Input
@@ -105,15 +99,12 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
+                className={inputClass}
                 required
               />
             </div>
             <div>
-              <Label 
-                htmlFor="email" 
-                className={isDark ? 'text-gray-300' : ''}
-              >
+              <Label htmlFor="email" className={labelClass}>
                 Email *
               </Label>
               <Input
@@ -123,29 +114,21 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
+                className={inputClass}
                 required
               />
             </div>
           </div>
         </div>
 
-        {/* Contact Information */}
         <div className="space-y-4">
-          <h3 
-            className={`text-lg font-semibold flex items-center gap-2 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <h3 className={`text-lg font-medium flex items-center gap-2 ${headingClass}`}>
             <Phone className="w-5 h-5" />
             Contact Details
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label 
-                htmlFor="phone" 
-                className={isDark ? 'text-gray-300' : ''}
-              >
+              <Label htmlFor="phone" className={labelClass}>
                 Phone Number
               </Label>
               <Input
@@ -154,14 +137,11 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="+1 (555) 000-0000"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
+                className={inputClass}
               />
             </div>
             <div>
-              <Label 
-                htmlFor="address" 
-                className={isDark ? 'text-gray-300' : ''}
-              >
+              <Label htmlFor="address" className={labelClass}>
                 <MapPin className="w-4 h-4 inline mr-1" />
                 Address
               </Label>
@@ -171,19 +151,14 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="City, State"
                 value={formData.address}
                 onChange={handleInputChange}
-                className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
+                className={inputClass}
               />
             </div>
           </div>
         </div>
 
-        {/* Education */}
         <div className="space-y-4">
-          <h3 
-            className={`text-lg font-semibold flex items-center gap-2 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <h3 className={`text-lg font-medium flex items-center gap-2 ${headingClass}`}>
             <GraduationCap className="w-5 h-5" />
             Education
           </h3>
@@ -193,17 +168,12 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
             value={formData.education}
             onChange={handleInputChange}
             rows={3}
-            className={isDark ? 'bg-gray-700 border-gray-600 text-black' : 'text-white'}
+            className={inputClass}
           />
         </div>
 
-        {/* Skills */}
         <div className="space-y-4">
-          <h3 
-            className={`text-lg font-semibold flex items-center gap-2 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <h3 className={`text-lg font-medium flex items-center gap-2 ${headingClass}`}>
             <Sparkles className="w-5 h-5" />
             Skills
           </h3>
@@ -213,17 +183,12 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
             value={formData.skills}
             onChange={handleInputChange}
             rows={3}
-            className={isDark ? 'bg-gray-700 border-gray-600 text-white' : ''}
+            className={inputClass}
           />
         </div>
 
-        {/* Experience */}
         <div className="space-y-4">
-          <h3 
-            className={`text-lg font-semibold flex items-center gap-2 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <h3 className={`text-lg font-medium flex items-center gap-2 ${headingClass}`}>
             <Briefcase className="w-5 h-5" />
             Experience
           </h3>
@@ -233,14 +198,12 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
             value={formData.experience}
             onChange={handleInputChange}
             rows={5}
-            className={isDark ? 'bg-gray-700 border-gray-600 text-white' : ''}
+            className={inputClass}
           />
         </div>
 
         <Button 
-          className={`w-full ${
-            !isDark ? 'bg-purple-600 hover:bg-purple-700' : ''
-          }`}
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
           size="lg"
           onClick={handleSubmit}
         >
