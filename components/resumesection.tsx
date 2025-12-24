@@ -1,134 +1,91 @@
-import { ArrowRight, Sparkles, FileText, Zap, Shield } from "lucide-react";
-const Card = ({
-  title,
-  subtitle,
-  iconClass,
-  img,
-}: {
-  title: string;
-  subtitle: string;
-  iconClass: string;
-  img: string;
-}) => (
-  <div className="bg-card h-80 rounded-xl shadow-2xl overflow-hidden border border-border transition-transform duration-300 hover:shadow-primary/30 hover:-translate-y-1">
-    <div className={`h-48 flex items-center justify-center p-6 ${iconClass}`}>
-      <img width={148} height={148} src={img} alt="" />
-    </div>
-    <div className="p-6">
-      <h3 className="text-xl font-bold text-card-foreground mb-1">{title}</h3>
-      <p className="text-sm text-muted-foreground">{subtitle}</p>
-      <div className="mt-4 text-xs font-semibold text-primary"></div>
-    </div>
-  </div>
-);
+import React from "react";
+import { Sparkles, FileText, Zap, ArrowRight } from "lucide-react";
 
-interface FeatureBlockProps {
-  title: string;
-  buttons: { label: string; action: string; style: "primary" | "secondary" }[];
-  icon: string;
-}
-
-const FeatureBlock: React.FC<FeatureBlockProps> = ({
-  title,
-  buttons,
-  icon,
-}) => {
-  const cols = buttons.length === 3 ? 3 : 2;
-
-  return (
-    <div className="bg-card p-8 rounded-xl shadow-2xl border border-border">
-      <div className="flex items-center mb-8">
-        <span className="text-4xl mr-3">{icon}</span>
-        <h2 className="text-3xl font-bold text-card-foreground">{title}</h2>
-      </div>
-      <div className={`grid grid-cols-1 md:grid-cols-${cols} gap-4`}>
-        {buttons.map((button, index) => (
-          <a
-            key={index}
-            href={button.action}
-            className={`flex flex-col items-center justify-center w-full min-h-25 p-4 rounded-lg font-medium text-center text-sm transition duration-200 
-                  ${
-                    button.style === "primary"
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-secondary/50"
-                  }`}
-          >
-            <span>{button.label}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-};
+const features = [
+  { 
+    icon: <Sparkles className="w-6 h-6" />, 
+    title: "AI GENERATION", 
+    description: "Original content, professionally refined for elite roles." 
+  },
+  { 
+    icon: <FileText className="w-6 h-6" />, 
+    title: "MULTIPLE TEMPLATES", 
+    description: "Choose from various professional resume templates." 
+  },
+  { 
+    icon: <Zap className="w-6 h-6" />, 
+    title: "FAST & EFFICIENT", 
+    description: "Generate a complete resume in under 2 minutes." 
+  },
+];
 
 const ResumeEnhancerSection: React.FC = () => {
   return (
-    <section id="ResumeBuilder" className="py-20 ">
-      <div className="container mx-auto px-4 max-w-7xl mt-30">
-        <h2 className="text-6xl font-extrabold text-foreground  mb-4 text-center">
-          Resume Enhancer
-        </h2>
-        <p className="text-lg text-muted-foreground mb-40 text-center">
-          Unlock high-paying roles with our specialized training paths.
-        </p>
-        <section id="features" className="mb-60 px-4 mt-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="text-center"></div>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="rounded-lg border bg-card p-6 shadow-sm"
-                >
-                  <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="mt-2 text-muted-foreground">
-                    {feature.description}
-                  </p>
+    <section id="ResumeBuilder" className="relative py-40 px-6 bg-[#020202]">
+      <div className="container mx-auto max-w-7xl">
+        
+        {/* Vanguard Ghost Header */}
+        <div className="mb-28 text-center relative">
+          <h2 className="text-8xl md:text-9xl font-black text-white/[0.01] absolute -top-16 left-1/2 -translate-x-1/2 uppercase italic select-none tracking-tighter">
+            VANGUARD
+          </h2>
+          <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter relative z-10">
+            RESUME <span className="text-blue-500 font-black italic">ENHANCER</span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="group relative flex flex-col justify-between p-12 rounded-[2.5rem] bg-[#080808] border border-white/5 transition-all duration-500 overflow-hidden cursor-pointer"
+            >
+              {/* Blue Rainbow Border (Subtle) */}
+              <div className="absolute inset-0 rounded-[2.5rem] p-[1.5px] bg-gradient-to-br from-blue-600 via-cyan-400 to-indigo-800 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="h-full w-full bg-[#080808] rounded-[2.4rem]" />
+              </div>
+
+              <div className="relative z-10">
+                <div className="mb-12 inline-flex rounded-2xl bg-zinc-900 border border-white/10 p-4 text-zinc-500 transition-all duration-500 group-hover:bg-blue-600 group-hover:text-white">
+                  {feature.icon}
                 </div>
-              ))}
+
+                <h3 className="text-2xl font-black text-white mb-4 tracking-tight uppercase italic">
+                  {feature.title}
+                </h3>
+                <p className="text-zinc-500 text-sm leading-relaxed mb-12 group-hover:text-zinc-300 transition-colors">
+                  {feature.description}
+                </p>
+              </div>
+
+              {/* THE REVEAL RIPPLE BUTTON */}
+              <button className="relative group/btn overflow-hidden w-full py-5 rounded-2xl bg-transparent border border-white/10 text-zinc-400 font-black text-[10px] tracking-[0.4em] uppercase transition-all duration-300 active:scale-95 hover:border-blue-500/50">
+                <span className="relative z-20 flex items-center justify-center gap-2 transition-colors duration-700 group-hover/btn:text-white">
+                  Initialize <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                </span>
+                
+                {/* THE RIPPLE FILL: Heavy start logic */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                  <div 
+                    className="w-0 h-0 bg-blue-600 rounded-full group-hover/btn:w-[160%] group-hover/btn:pt-[160%] transition-all duration-[850ms]" 
+                    style={{ transitionTimingFunction: 'cubic-bezier(0.8, 0, 0.2, 1)' }} 
+                  />
+                </div>
+                
+                {/* Secondary Shadow Wave */}
+                <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+                  <div 
+                    className="w-0 h-0 bg-indigo-500/20 rounded-full group-hover/btn:w-[200%] group-hover/btn:pt-[200%] transition-all duration-[1100ms] delay-100"
+                    style={{ transitionTimingFunction: 'cubic-bezier(0.8, 0, 0.2, 1)' }} 
+                  />
+                </div>
+              </button>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
 export default ResumeEnhancerSection;
-
-const handleSmoothScroll = (
-  e: React.MouseEvent<HTMLButtonElement>,
-  id: string
-): void => {
-  e.preventDefault();
-
-  const anchor = document.getElementById(id);
-  anchor?.scrollIntoView({ behavior: "smooth" });
-};
-
-const features = [
-  {
-    icon: <Sparkles className="h-8 w-8" />,
-    title: "AI-Powered Generation",
-    description:
-      "Get professionally crafted resumes using advanced AI algorithms",
-  },
-  {
-    icon: <FileText className="h-8 w-8" />,
-    title: "Multiple Templates",
-    description: "Choose from various professional resume templates",
-  },
-  {
-    icon: <Zap className="h-8 w-8" />,
-    title: "Fast & Efficient",
-    description: "Generate a complete resume in under 2 minutes",
-  },
-  {
-    icon: <Shield className="h-8 w-8" />,
-    title: "Privacy Focused",
-    description: "Your data is never stored or shared with third parties",
-  },
-];
