@@ -19,6 +19,7 @@ interface UploadTabProps {
 export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
   const [dragActive, setDragActive] = useState<boolean>(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [isGenerating, setIsGenerating] = useState<boolean>(false);
 
   const handleDrag = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -44,6 +45,49 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
   const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setUploadedFile(e.target.files[0]);
+    }
+  };
+
+  const handleGenerate = async () => {
+    if (!uploadedFile) return;
+    
+    setIsGenerating(true);
+    
+    try {
+      // Read file content
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const content = e.target?.result as string;
+        
+        // Send to API
+        const response = await fetch('/api/generate-resume', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            fileContent: content,
+          }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          console.log('Generated Resume:', data.resume);
+          alert('Resume generated successfully! Check console for markdown output.');
+          // You can pass the resume data to parent component if needed
+          onGenerate(uploadedFile);
+        } else {
+          alert('Failed to generate resume: ' + data.error);
+        }
+      };
+      
+      reader.readAsText(uploadedFile);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error generating resume');
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -111,7 +155,7 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
                   isDark ? "text-gray-400" : "text-gray-500"
                 } mb-4`}
               >
-                Supports PDF, DOC, DOCX files
+                Supports PDF, DOC, DOCX, TXT files
               </p>
             </div>
           )}
@@ -119,7 +163,7 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
             type="file"
             id="file-upload"
             className="hidden"
-            accept=".pdf,.doc,.docx"
+            accept=".pdf,.doc,.docx,.txt"
             onChange={handleFileInput}
           />
           <Button
@@ -137,10 +181,11 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
               !isDark ? "bg-purple-600 hover:bg-purple-700 text-white" : ""
             }`}
             size="lg"
-            onClick={() => onGenerate(uploadedFile)}
+            onClick={handleGenerate}
+            disabled={isGenerating}
           >
             <Sparkles className="w-5 h-5 mr-2" />
-            Generate AI Resume
+            {isGenerating ? "Generating..." : "Generate AI Resume"}
           </Button>
         )}
       </CardContent>
