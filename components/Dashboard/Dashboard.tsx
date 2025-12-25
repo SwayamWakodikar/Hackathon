@@ -120,7 +120,7 @@ const Dashboard: React.FC = () => {
      BACKEND SWITCH (COMMENT / UNCOMMENT THIS LINE)
      -------------------------------------------------- */
 
-  const resumeMarkdown = "";
+  const resumeMarkdown = ""; 
 
   const hasResume = Boolean(resumeMarkdown);
 
@@ -175,12 +175,12 @@ const Dashboard: React.FC = () => {
                       No Resume Found
                     </h3>
                     <p className="text-muted-foreground mb-6 max-w-md">
-                      You haven’t generated a resume yet. Create one to see it
+                      You haven't generated a resume yet. Create one to see it
                       appear here.
                     </p>
-                    <button className="px-6 py-3 rounded-xl bg-purple-600 text-white hover:bg-purple-700 transition">
+                    <a href="/resume/home" className="px-6 py-3 rounded-xl bg-purple-600 text-white hover:bg-purple-700 transition">
                       Generate Resume
-                    </button>
+                    </a>
                   </div>
                 )}
               </div>
