@@ -14,9 +14,9 @@ const Card = ({ title, subtitle, iconClass }: { title: string, subtitle: string,
 
 const AIBasedTrainerSection: React.FC = () => {
     return (
-        <section id="accelerators" className="py-20 bg-muted/50">
-            <div className="container mx-auto px-4 max-w-7xl">
-                <h2 className="text-4xl font-extrabold text-foreground mb-4 text-center">
+        <section id="AI Trainer" className="py-20">
+            <div className="container mt-30 mx-auto px-4 max-w-7xl">
+                <h2 className="text-6xl font-extrabold text-foreground mb-4 text-center">
                      AI-based Trainer
                 </h2>
                 <p className="text-lg text-muted-foreground mb-12 text-center">
@@ -26,8 +26,8 @@ const AIBasedTrainerSection: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <Card 
                         title="AI Interview Coach" 
-                        subtitle="Practice hyper-realistic mock interviews with AI feedback.    ." 
-                        iconClass="bg-primary/10"
+                        subtitle="Practice hyper-realistic mock interviews with AI feedback." 
+                        iconClass="bg-secondary/10"
                     
                     />
                     <Card 
