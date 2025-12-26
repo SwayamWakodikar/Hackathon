@@ -72,7 +72,7 @@ const Ats = () => {
               <TabsContent value="jd">
                 <Textarea
                   placeholder="Paste the job description here..."
-                  className="min-h-[220px]"
+                  className="min-h-55"
                   value={jobDesc}
                   onChange={(e) => setJobDesc(e.target.value)}
                 />
