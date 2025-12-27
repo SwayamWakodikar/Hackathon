@@ -30,7 +30,6 @@ const ResumeEnhancerSection: React.FC = () => {
         {/* Vanguard Ghost Header - FIXED */}
         <div className="mb-28 text-center relative">
           <h2 className="text-7xl md:text-[10rem] font-black text-white/[0.03] absolute -top-20 left-1/2 -translate-x-1/2 uppercase italic select-none tracking-tighter w-full">
-            ENHANCE
           </h2>
           <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter relative z-10">
             RESUME <span className="text-blue-500 font-black italic">ENHANCER</span>
