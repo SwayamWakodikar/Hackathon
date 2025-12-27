@@ -5,18 +5,25 @@ import ResumeTab from "./ResumeTab";
 import ResumePreviewModal from "./ResumePreviewModal";
 
 import { Sidebar, SidebarBody, SidebarLink, useSidebar } from "../ui/sidebar";
-
 import {
-  IconLayoutDashboard,
-  IconUser,
+  IconHome,
+  IconScoreboard,
   IconSettings,
   IconLogout,
-  IconHome,
 } from "@tabler/icons-react";
-import { img } from "motion/react-client";
-// import LetterV from "../../public/LetterV.png";
 
-/* ---------------- Sidebar Content ---------------- */
+import Particles from "../Particles";
+
+/* ---------------- SAMPLE RESUME DATA ---------------- */
+
+const testResumeMarkdown = `# Sarah Mitchell
+**Senior Software Engineer**
+
+- React | Next.js | AWS
+- 6+ years experience
+`;
+
+/* ---------------- SIDEBAR ---------------- */
 
 const AppSidebar = () => {
   const { open } = useSidebar();
@@ -25,26 +32,21 @@ const AppSidebar = () => {
     <SidebarBody className="h-screen justify-between">
       {/* Top */}
       <div className="flex flex-col gap-8">
-        
         {/* Brand */}
         <div className="flex items-center">
-          {/* Static logo */}
           <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-purple-600">
-            <img
-              src="/letter-v.svg"
-              alt="VPlace Logo"
-              className="h-5 w-5"
-            />
+            <img src="/letter-v.svg" alt="VPlace Logo" className="h-5 w-5" />
           </div>
 
-          {/* Animated text (no layout shift) */}
           <span
             className={`
               ml-2 text-lg font-semibold whitespace-nowrap
               transition-all duration-200 ease-out
-              ${open
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-2 pointer-events-none"}
+              ${
+                open
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-2 pointer-events-none"
+              }
             `}
           >
             Vplace
@@ -62,9 +64,9 @@ const AppSidebar = () => {
           />
           <SidebarLink
             link={{
-              label: "Profile",
-              href: "/profile",
-              icon: <IconUser className="h-5 w-5" />,
+              label: "ATS",
+              href: "/ats",
+              icon: <IconScoreboard className="h-5 w-5" />,
             }}
           />
           <SidebarLink
@@ -86,21 +88,20 @@ const AppSidebar = () => {
 
       {/* Bottom User */}
       <div className="flex items-center py-3">
-        <div className="h-8 w-8 shrink-0 flex items-center justify-center">
-          <img
-            src="https://i.pravatar.cc/100"
-            className="h-8 w-8 rounded-full"
-            alt="user"
-          />
-        </div>
-
+        <img
+          src="https://i.pravatar.cc/100"
+          className="h-8 w-8 rounded-full"
+          alt="user"
+        />
         <span
           className={`
             ml-2 text-sm font-medium whitespace-nowrap
             transition-all duration-200 ease-out
-            ${open
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-2 pointer-events-none"}
+            ${
+              open
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-2 pointer-events-none"
+            }
           `}
         >
           Manu Arora
@@ -110,51 +111,91 @@ const AppSidebar = () => {
   );
 };
 
-/* ---------------- Dashboard ---------------- */
+/* ---------------- DASHBOARD ---------------- */
 
 const Dashboard: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [resumeMarkdown, setResumeMarkdown] = useState("");
+
+  /* --------------------------------------------------
+     BACKEND SWITCH (COMMENT / UNCOMMENT THIS LINE)
+     -------------------------------------------------- */
+
+  const resumeMarkdown = ""; 
+
+  const hasResume = Boolean(resumeMarkdown);
 
   return (
-    <Sidebar>
-      <div className="flex min-h-screen bg-linear-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
-        {/* Sidebar */}
-        <AppSidebar />
+    <>
+      {/* Particles Background */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <Particles
+          particleColors={["#ffffff"]}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.01}
+          particleBaseSize={100}
+          moveParticlesOnHover
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
 
-        {/* Dashboard Content (UNCHANGED) */}
-        <div className="flex-1 p-8">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl font-bold mb-8 text-foreground">
-              <span className="text-purple-600 dark:text-purple-400">
-                VPlace
-              </span>
-            </h1>
+      <Sidebar>
+        <div className="flex min-h-screen bg-transparent">
+          <AppSidebar />
 
-            <div className="bg-muted/50 dark:bg-muted/30 rounded-3xl p-8 shadow-lg border border-border">
-              <h1 className="text-2xl font-semibold mb-6 text-foreground">
-                Your Generated Resume
+          {/* Main Content */}
+          <div className="flex-1 p-8">
+            <div className="max-w-7xl mx-auto">
+              <h1 className="text-4xl font-bold mb-8">
+                <span className="text-purple-600 dark:text-purple-400">
+                  VPlace
+                </span>
               </h1>
 
-              <div className="flex gap-6">
-                <ResumeTab
-                  onView={() => setShowModal(true)}
-                  resumeData={resumeMarkdown}
-                  hasResume={!!resumeMarkdown}
-                />
-                <div className="flex-1" />
-              </div>
-            </div>
+              <div className="backdrop-blur-2xl bg-gray-300/5 rounded-3xl p-8 shadow-lg border border-border">
+                <h2 className="text-2xl font-semibold mb-6">
+                  Your Generated Resume
+                </h2>
 
-            <ResumePreviewModal
-              open={showModal}
-              onClose={() => setShowModal(false)}
-              markdown={resumeMarkdown}
-            />
+                {hasResume ? (
+                  /* ---------------- HAS RESUME ---------------- */
+                  <div className="flex gap-6">
+                    <ResumeTab
+                      onView={() => setShowModal(true)}
+                      resumeData={resumeMarkdown}
+                      hasResume
+                    />
+                    <div className="flex-1" />
+                  </div>
+                ) : (
+                  /* ---------------- NO RESUME ---------------- */
+                  <div className="flex flex-col items-center justify-center py-20 text-center">
+                    <h3 className="text-xl font-semibold mb-2">
+                      No Resume Found
+                    </h3>
+                    <p className="text-muted-foreground mb-6 max-w-md">
+                      You haven't generated a resume yet. Create one to see it
+                      appear here.
+                    </p>
+                    <a href="/resume/home" className="px-6 py-3 rounded-xl bg-purple-600 text-white hover:bg-purple-700 transition">
+                      Generate Resume
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Modal */}
+              <ResumePreviewModal
+                open={showModal && hasResume}
+                onClose={() => setShowModal(false)}
+                markdown={resumeMarkdown}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </Sidebar>
+      </Sidebar>
+    </>
   );
 };
 

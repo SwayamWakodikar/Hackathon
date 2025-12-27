@@ -62,55 +62,75 @@ const NavBar: React.FC = () => {
       )}
     </svg>
   );
+return (
+  <nav
+    className="
+      select-none
+      fixed top-4 left-1/2 -translate-x-1/2
+      w-[93%] max-w-5xl
+      backdrop-blur-lg
+      rounded-full
+      flex items-center justify-between
+      px-6 py-2.5
+      z-50
+      border border-border
+      bg-card/80 dark:bg-card/80
+      shadow-md
+    "
+  >
+    {/* Logo */}
+    <button
+      onClick={(e) => handleSmoothScroll(e, 'hero')}
+      className="text-[26px] font-extrabold text-primary leading-none"
+    >
+      Vplace
+    </button>
 
-  return (
-    <nav className="select-none  fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl backdrop-blur-lg rounded-full flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-3 md:py-4 z-50  border border-border bg-card/80 dark:bg-card/80 shadow-md">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <button onClick={(e) => handleSmoothScroll(e, "hero")} className="text-5xl font-extrabold text-primary">
-          Vplace
-        </button>
-        <div>
-          <div className="flex items-center space-x-8">
-            <button
+    {/* Center Nav */}
+    <div className="hidden md:flex items-center space-x-6">
+      <button
+        className="px-4 py-2 text-base font-medium text-foreground hover:bg-muted/60 rounded-full transition"
+        onClick={(e) => handleSmoothScroll(e, 'ResumeBuilder')}
+      >
+        Resume Enhancer
+      </button>
 
-              className="cursor-pointer px-4 py-2 text-xl font-semibold text-gray-900 dark:text-white hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition duration-300"
-              onClick={(e) => handleSmoothScroll(e, "ResumeBuilder")}
-            >
-              Resume Enhancer
-            </button>
-            <button
-              className="cursor-pointer px-4 py-2 text-xl font-semibold text-gray-900 dark:text-white hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition duration-300"
-              onClick={(e) => handleSmoothScroll(e, "AI Trainer")}
-            >
-              AI Trainer
-            </button>
-          </div>
-        </div>
-        <div className="flex items-center space-x-3">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full text-foreground hover:bg-muted transition duration-200"
-            title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          >
-            <ThemeIcon />
-          </button>
-          <a href="/login"
-            className="cursor-pointer px-4 py-2 text-xl font-semibold text-gray-900 dark:text-white hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition duration-300"
-            onClick={() => console.log("Login clicked")}
-          >
-            Login
-          </a>
+      <button
+        className="px-4 py-2 text-base font-medium text-foreground hover:bg-muted/60 rounded-full transition"
+        onClick={(e) => handleSmoothScroll(e, 'AI Trainer')}
+      >
+        AI Trainer
+      </button>
+    </div>
 
-          <a  href="/register"
-            className="cursor-pointer px-4 py-2 text-xl font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition duration-300 shadow-lg hover:shadow-xl"
-            onClick={() => console.log("Register clicked")}
-          >
-            Register
-          </a>
-        </div>
-      </div>
-    </nav>
-  );
+    {/* Right Actions */}
+    <div className="flex items-center space-x-2">
+      <button
+        onClick={toggleTheme}
+        className="p-2.5 rounded-full text-foreground hover:bg-muted transition"
+        title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      >
+        <ThemeIcon />
+      </button>
+
+      <a
+        href="/login"
+        className="px-4 py-2 text-base font-medium text-foreground hover:bg-muted/60 rounded-full transition"
+      >
+        Login
+      </a>
+
+      <a
+        href="/register"
+        className="px-5 py-2 text-base font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition shadow-sm"
+      >
+        Register
+      </a>
+    </div>
+  </nav>
+);
+
+
 };
 export default NavBar;
 const handleSmoothScroll = (
