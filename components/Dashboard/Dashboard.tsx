@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ResumeTab from "./ResumeTab";
 import ResumePreviewModal from "./ResumePreviewModal";
 
@@ -13,15 +13,6 @@ import {
 } from "@tabler/icons-react";
 
 import Particles from "../Particles";
-
-/* ---------------- SAMPLE RESUME DATA ---------------- */
-
-const testResumeMarkdown = `# Sarah Mitchell
-**Senior Software Engineer**
-
-- React | Next.js | AWS
-- 6+ years experience
-`;
 
 /* ---------------- SIDEBAR ---------------- */
 
@@ -115,12 +106,44 @@ const AppSidebar = () => {
 
 const Dashboard: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [resumeMarkdown, setResumeMarkdown] = useState(""); // State for resume data
 
-  /* --------------------------------------------------
-     BACKEND SWITCH (COMMENT / UNCOMMENT THIS LINE)
-     -------------------------------------------------- */
+  useEffect(() => {
+    // Fetch the generated resume from the API
+    const fetchResume = async () => {
+      try {
+        const response = await fetch("/api/generate-resume", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            formData: {
+              name: "John Doe",
+              email: "john.doe@example.com",
+              phone: "123-456-7890",
+              address: "123 Main St, City, Country",
+              education: "B.Sc. in Computer Science",
+              skills: "React, Node.js, AWS",
+              experience: "5 years as a Full-Stack Developer",
+            },
+          }),
+        });
 
-  const resumeMarkdown = ""; 
+        const data = await response.json();
+
+        if (data.success) {
+          setResumeMarkdown(data.resume); // Set the generated resume
+        } else {
+          console.error("Failed to fetch resume:", data.error);
+        }
+      } catch (error) {
+        console.error("Error fetching resume:", error);
+      }
+    };
+
+    fetchResume();
+  }, []);
 
   const hasResume = Boolean(resumeMarkdown);
 
@@ -178,7 +201,10 @@ const Dashboard: React.FC = () => {
                       You haven't generated a resume yet. Create one to see it
                       appear here.
                     </p>
-                    <a href="/resume/home" className="px-6 py-3 rounded-xl bg-purple-600 text-white hover:bg-purple-700 transition">
+                    <a
+                      href="/resume/home"
+                      className="px-6 py-3 rounded-xl bg-purple-600 text-white hover:bg-purple-700 transition"
+                    >
                       Generate Resume
                     </a>
                   </div>
