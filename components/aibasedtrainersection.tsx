@@ -22,10 +22,9 @@ const AIBasedTrainerSection: React.FC = () => {
         {/* Vanguard Ghost Header */}
         <div className="mb-14 text-center relative">
           <h2 className="text-8xl md:text-9xl font-black text-white/5 absolute -top-16 left-1/2 -translate-x-1/2 uppercase italic select-none tracking-tighter">
-            TRAINER
           </h2>
           <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter relative z-10">
-            AI-BASED <span className="text-blue-500 font-black italic">TRAINER</span>
+            AI-BASED <span className="text-blue-500 font-black italic"></span>
           </h2>
           <p className="text-lg text-zinc-500 mt-6 max-w-2xl mx-auto font-medium">
             Unlock high-paying roles with our specialized training paths.

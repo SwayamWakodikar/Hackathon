@@ -1,5 +1,8 @@
+"use client";
 import React from "react";
+import Link from "next/link";
 import { Sparkles, FileText, Zap, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
   { 
@@ -8,12 +11,12 @@ const features = [
     description: "Original content, professionally refined for elite roles." 
   },
   { 
-    icon: <FileText className="w-6 h-6" />, 
+    icon: <FileText className="h-6 w-6" />, 
     title: "MULTIPLE TEMPLATES", 
     description: "Choose from various professional resume templates." 
   },
   { 
-    icon: <Zap className="w-6 h-6" />, 
+    icon: <Zap className="h-6 w-6" />, 
     title: "FAST & EFFICIENT", 
     description: "Generate a complete resume in under 2 minutes." 
   },
@@ -24,10 +27,10 @@ const ResumeEnhancerSection: React.FC = () => {
     <section id="ResumeBuilder" className="relative py-40 bg-transparent px-6 ">
       <div className="container mx-auto max-w-7xl">
         
-        {/* Vanguard Ghost Header */}
+        {/* Vanguard Ghost Header - FIXED */}
         <div className="mb-28 text-center relative">
-          <h2 className="text-8xl md:text-9xl font-black text-white/5 absolute -top-16 left-1/2 -translate-x-1/2 uppercase italic select-none tracking-tighter">
-            VANGUARD
+          <h2 className="text-7xl md:text-[10rem] font-black text-white/[0.03] absolute -top-20 left-1/2 -translate-x-1/2 uppercase italic select-none tracking-tighter w-full">
+            ENHANCE
           </h2>
           <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter relative z-10">
             RESUME <span className="text-blue-500 font-black italic">ENHANCER</span>
@@ -36,11 +39,15 @@ const ResumeEnhancerSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group relative flex flex-col justify-between p-12 rounded-[2.5rem] bg-[#080808] border border-white/5 transition-all duration-500 overflow-hidden cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative flex flex-col justify-between p-12 rounded-[2.5rem] bg-[#080808] border border-white/5 transition-all duration-500 overflow-hidden"
             >
-              {/* Blue Rainbow Border (Subtle) */}
+              {/* Blue Rainbow Border */}
               <div className="absolute inset-0 rounded-[2.5rem] p-[1.5px] bg-gradient-to-br from-blue-600 via-cyan-400 to-indigo-800 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
                 <div className="h-full w-full bg-[#080808] rounded-[2.4rem]" />
               </div>
@@ -58,13 +65,16 @@ const ResumeEnhancerSection: React.FC = () => {
                 </p>
               </div>
 
-              {/* THE REVEAL RIPPLE BUTTON */}
-              <button className="relative group/btn overflow-hidden w-full py-5 rounded-2xl bg-transparent border border-white/10 text-zinc-400 font-black text-[10px] tracking-[0.4em] uppercase transition-all duration-300 active:scale-95 hover:border-blue-500/50">
+              {/* REDIRECT BUTTON - LINKED TO DASHBOARD */}
+              <Link 
+                href="/dashboard" 
+                className="relative group/btn overflow-hidden w-full py-5 rounded-2xl bg-transparent border border-white/10 text-zinc-400 font-black text-[10px] tracking-[0.4em] uppercase transition-all duration-300 active:scale-95 hover:border-blue-500/50 block text-center"
+              >
                 <span className="relative z-20 flex items-center justify-center gap-2 transition-colors duration-700 group-hover/btn:text-white">
                   Initialize <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                 </span>
                 
-                {/* THE RIPPLE FILL: Heavy start logic */}
+                {/* RIPPLE FILL */}
                 <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
                   <div 
                     className="w-0 h-0 bg-blue-600 rounded-full group-hover/btn:w-[160%] group-hover/btn:pt-[160%] transition-all duration-[850ms]" 
@@ -79,8 +89,8 @@ const ResumeEnhancerSection: React.FC = () => {
                     style={{ transitionTimingFunction: 'cubic-bezier(0.8, 0, 0.2, 1)' }} 
                   />
                 </div>
-              </button>
-            </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
