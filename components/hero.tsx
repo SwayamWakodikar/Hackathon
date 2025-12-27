@@ -1,33 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className=" pt-20 pb-16 md:pt-32 md:pb-24 text-center min-h-[calc(100vh-64px)] flex items-center justify-center">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight mb-4">
-          Land Your Dream Job with <span className="text-primary">Vplace</span>
+    <section className="relative pt-20 pb-16 md:pt-32 md:pb-24 text-center min-h-screen flex items-center justify-center overflow-hidden bg-[#020202]">
+      
+      {/* BACKGROUND LAYER 1: The "Deep Spotlight" */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_50%,#1e3a8a20_0%,transparent_50%)]" />
+      
+      {/* BACKGROUND LAYER 2: The Grid (Provides texture for Glass to blur) */}
+      <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none" 
+           style={{ backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="mb-6 inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">
+          Next-Gen Career Accelerator
+        </div>
+
+        <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
+          Land Your Dream Job with <span className="text-blue-500">Vplace</span>
         </h1>
-        <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
+        
+        <p className="text-lg sm:text-xl text-zinc-500 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
           Expert resume analysis and AI-driven interview practice, structured
           for success.
         </p>
 
-        <div className="mx-auto w-full max-w-2xl p-6 bg-card rounded-xl border border-border shadow-lg mb-8">
-          <h3 className="text-xl font-bold text-card-foreground">
+        {/* Feature Preview - Now with Glass Morphism to test contrast */}
+        <div className="mx-auto w-full max-w-2xl p-8 bg-white/[0.03] backdrop-blur-2xl rounded-[2rem] border border-white/[0.08] shadow-2xl mb-12">
+          <h3 className="text-xl font-bold text-white mb-2">
             Key Features at a Glance 
           </h3>
-          <p className="text-muted-foreground text-sm mt-2">
-            [Placeholder for the detailed Accordions component content.]
+          <p className="text-zinc-500 text-sm">
+            Automated Resume Scoring • Real-time Interview Feedback • Industry Specific Roadmap
           </p>
         </div>
 
         <button
-          className="inline-flex items-center px-8 py-3 text-lg font-semibold bg-primary text-primary-foreground rounded-lg transition duration-300 hover:opacity-90 shadow-xl"
+          className="group relative inline-flex items-center px-10 py-4 text-lg font-bold bg-blue-600 text-white rounded-2xl transition-all duration-300 hover:bg-blue-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(37,99,235,0.3)]"
           onClick={(e) => handleSmoothScroll(e, "ResumeBuilder")}
         >
           Explore Accelerators
           <svg
-            className="w-5 h-5 ml-2"
+            className="w-5 h-5 ml-3 transition-transform group-hover:translate-y-1"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -45,24 +59,21 @@ const HeroSection: React.FC = () => {
   );
 };
 
-// --- Card Helper Component (Used in Accelerator Section) ---
+// --- Updated Card Helper (Matching the Glass Theme) ---
 const Card = ({
   title,
   subtitle,
-  iconClass,
 }: {
   title: string;
   subtitle: string;
-  iconClass: string;
 }) => (
-  <div className="bg-card rounded-xl shadow-2xl overflow-hidden border border-border transition-transform duration-300 hover:shadow-primary/30 hover:-translate-y-1">
-    <div className={`h-48 flex items-center justify-center p-6 ${iconClass}`}>
-      <span className="text-6xl text-card-foreground/50 font-bold">VISUAL</span>
+  <div className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] border border-white/[0.08] p-8 transition-all duration-500 hover:border-blue-500/40 hover:bg-white/[0.04] group">
+    <div className="h-48 flex items-center justify-center p-6 bg-zinc-900/50 rounded-2xl mb-6 border border-white/5 transition-colors group-hover:border-blue-500/20">
+      <span className="text-4xl text-zinc-700 font-black tracking-tighter uppercase opacity-50">Visual</span>
     </div>
-    <div className="p-6">
-      <h3 className="text-xl font-bold text-card-foreground mb-1">{title}</h3>
-      <p className="text-sm text-muted-foreground">{subtitle}</p>
-      <div className="mt-4 text-xs font-semibold text-primary"></div>
+    <div className="">
+      <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
+      <p className="text-sm text-zinc-500 leading-relaxed">{subtitle}</p>
     </div>
   </div>
 );
@@ -74,7 +85,6 @@ const handleSmoothScroll = (
   id: string
 ): void => {
   e.preventDefault();
-
   const anchor = document.getElementById(id);
   anchor?.scrollIntoView({ behavior: "smooth" });
 };
