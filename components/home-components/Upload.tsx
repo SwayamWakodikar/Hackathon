@@ -93,13 +93,13 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
 
   return (
     <Card
-      className={`max-w-2xl mx-auto ${isDark ? "bg-gray-800" : "bg-white"}`}
+      className={`max-w-2xl mx-auto bg-white dark:bg-gray-800 shadow-lg border border-border`}
     >
       <CardHeader>
-        <CardTitle className={isDark ? "text-white" : "text-black"}>
+        <CardTitle className="text-black dark:text-white">
           Upload Your Resume
         </CardTitle>
-        <CardDescription className={isDark ? "text-gray-800" : ""}>
+        <CardDescription className="text-black dark:text-white">
           Upload your existing resume and let AI enhance it
         </CardDescription>
       </CardHeader>
@@ -144,16 +144,12 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
           ) : (
             <div>
               <p
-                className={`text-lg font-semibold mb-2 ${
-                  isDark ? "text-white" : "text-gray-900"
-                }`}
+                className={`text-lg font-semibold mb-2 "text-black dark:text-white"`}
               >
                 Drag and drop your resume here
               </p>
               <p
-                className={`text-sm ${
-                  isDark ? "text-gray-400" : "text-gray-500"
-                } mb-4`}
+                className={`text-sm text-black dark:text-white mb-4`}
               >
                 Supports PDF, DOC, DOCX, TXT files
               </p>

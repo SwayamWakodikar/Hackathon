@@ -10,37 +10,23 @@ interface HeaderProps {
 
 export default function Header({ isDark, setIsDark }: HeaderProps) {
   return (
-    <header 
-      className={`border-b ${
-        isDark 
-          ? 'bg-gray-800 border-gray-700' 
-          : 'bg-white/80 backdrop-blur-sm border-gray-200'
-      }`}
-    >
+    <header className="bg-white dark:bg-gray-700/60 shadow-md">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Sparkles 
-            className={`w-8 h-8 ${
-              isDark ? 'text-purple-400' : 'text-purple-600'
-            }`} 
-          />
-          <h1 
-            className={`text-2xl font-bold ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <Sparkles className={isDark ? 'w-8 h-8 text-indigo-400' : 'w-8 h-8 text-indigo-600'} />
+          <h1 className="text-2xl font-bold text-foreground dark:text-white">
             AI Resume Maker
           </h1>
         </div>
-        <Button
-          variant="outline"
+        {/* <Button
+          variant="ghost"
           size="icon"
           onClick={() => setIsDark(!isDark)}
-          className={isDark ? 'border-gray-600' : ''}
+          className={isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100'}
           aria-label="Toggle theme"
         >
           {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-        </Button>
+        </Button> */}
       </div>
     </header>
   );
