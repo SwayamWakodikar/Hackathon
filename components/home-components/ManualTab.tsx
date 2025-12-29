@@ -95,11 +95,12 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
 
       if (data.success) {
         console.log("Generated Resume:", data.resume);
-        window.location.href = "/resume/dashboard";
         alert(
           "Resume generated successfully! Check console for markdown output."
         );
         onGenerate(formData);
+        // Redirect to dashboard after successful generation
+        window.location.href = "/resume/dashboard";
       } else {
         alert("Failed to generate resume: " + data.error);
       }
@@ -330,10 +331,9 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
             <Textarea
               name="education"
               placeholder="Bachelor of Science in Computer Science, XYZ University (2020-2024)
-- GPA: 3.8/4.0
-- Relevant Coursework: Data Structures, Algorithms, Web Development
-
-Diploma in Full Stack Development, ABC Institute (2024)"
+              - GPA: 3.8/4.0
+              - Relevant Coursework: Data Structures, Algorithms, Web Development
+                Diploma in Full Stack Development, ABC Institute (2024)"
               value={formData.education}
               onChange={handleInputChange}
               rows={4}
@@ -367,10 +367,10 @@ Diploma in Full Stack Development, ABC Institute (2024)"
             <Textarea
               name="skills"
               placeholder="Programming: JavaScript, TypeScript, Python, Java
-Frameworks: React, Next.js, Node.js, Express
-Databases: MongoDB, PostgreSQL, MySQL
-Tools: Git, Docker, AWS, Jenkins
-Soft Skills: Team Leadership, Problem Solving, Communication"
+                Frameworks: React, Next.js, Node.js, Express
+                Databases: MongoDB, PostgreSQL, MySQL
+                Tools: Git, Docker, AWS, Jenkins
+                Soft Skills: Team Leadership, Problem Solving, Communication"
               value={formData.skills}
               onChange={handleInputChange}
               rows={4}
@@ -512,28 +512,30 @@ Google Cloud Professional Data Engineer (2021)"
 
         {/* Generate Button */}
         <div className="pt-4">
-          <Button
+            <Button
             className={`w-full py-6 text-lg font-semibold ${
               !isDark
-                ? "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
-                : "bg-purple-600 hover:bg-purple-700 text-white"
+              ? "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
+              : "bg-purple-600 hover:bg-purple-700 text-white"
             }`}
             size="lg"
-            onClick={handleSubmit}
+            onClick={() => {
+              handleSubmit();
+            }}
             disabled={isGenerating}
-          >
+            >
             {isGenerating ? (
               <>
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                Generating Resume...
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+              Generating Resume...
               </>
             ) : (
               <>
-                <Sparkles className="w-6 h-6 mr-2" />
-                Generate AI Resume
+              <Sparkles className="w-6 h-6 mr-2" />
+              Generate AI Resume
               </>
             )}
-          </Button>
+            </Button>
 
           <div
             className={`text-center mt-4 text-sm ${
