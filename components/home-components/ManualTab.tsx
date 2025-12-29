@@ -83,9 +83,10 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
       // Send to API
       const response = await fetch("/api/generate-resume", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers:
+          {
+            "Content-Type": "application/json",
+          },
         body: JSON.stringify({
           formData: formData,
         }),
@@ -113,42 +114,25 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
   };
 
   return (
-    <Card
-      className={`max-w-4xl mx-auto ${
-        isDark ? "bg-gray-800 border-gray-700" : "bg-white shadow-xl"
-      }`}
-    >
+    <Card className="max-w-4xl mx-auto backdrop-blur-lg bg-transparent ">
       <CardHeader>
-        <CardTitle
-          className={`text-2xl font-bold ${
-            isDark ? "text-white" : "text-gray-900"
-          }`}
-        >
+        <CardTitle className="text-2xl font-bold text-gray-200">
           Enter Your Details
         </CardTitle>
-        <CardDescription className={isDark ? "text-gray-400" : ""}>
+        <CardDescription className="text-gray-400">
           Fill in your information and let AI create your professional resume
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-8">
         {/* Personal Information */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <User className="w-6 h-6" />
             Personal Information
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <Label
-                htmlFor="name"
-                className={`mb-2 block ${
-                  isDark ? "text-gray-300" : "text-gray-700"
-                }`}
-              >
+              <Label htmlFor="name" className="mb-2 block text-gray-300">
                 Full Name *
               </Label>
               <Input
@@ -157,21 +141,12 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={
-                  isDark
-                    ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                    : "text-black"
-                }
+                className="bg-gray-700 border-gray-600 text-gray-200 placeholder:text-gray-400"
                 required
               />
             </div>
             <div>
-              <Label
-                htmlFor="email"
-                className={`mb-2 block ${
-                  isDark ? "text-gray-300" : "text-gray-700"
-                }`}
-              >
+              <Label htmlFor="email" className="mb-2 block text-gray-300">
                 Email Address *
               </Label>
               <Input
@@ -181,11 +156,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={
-                  isDark
-                    ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                    : "text-black"
-                }
+                className="bg-gray-700 border-gray-600 text-gray-200 placeholder:text-gray-400"
                 required
               />
             </div>
@@ -194,22 +165,13 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
 
         {/* Contact Information */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <Phone className="w-6 h-6" />
             Contact Details
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <Label
-                htmlFor="phone"
-                className={`mb-2 block ${
-                  isDark ? "text-gray-300" : "text-gray-700"
-                }`}
-              >
+              <Label htmlFor="phone" className="mb-2 block text-gray-300">
                 Phone Number
               </Label>
               <Input
@@ -218,20 +180,11 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="+1 (555) 000-0000"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className={
-                  isDark
-                    ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                    : "text-black"
-                }
+                className="bg-gray-700 border-gray-600 text-gray-200 placeholder:text-gray-400"
               />
             </div>
             <div>
-              <Label
-                htmlFor="address"
-                className={`mb-2 block ${
-                  isDark ? "text-gray-300" : "text-gray-700"
-                }`}
-              >
+              <Label htmlFor="address" className="mb-2 block text-gray-300">
                 <MapPin className="w-5 h-5 inline mr-2" />
                 Address
               </Label>
@@ -241,11 +194,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
                 placeholder="City, State, Country"
                 value={formData.address}
                 onChange={handleInputChange}
-                className={
-                  isDark
-                    ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                    : "text-black"
-                }
+                className="bg-gray-700 border-gray-600 text-gray-200 placeholder:text-gray-400"
               />
             </div>
           </div>
@@ -253,11 +202,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
 
         {/* Professional Summary */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <FileText className="w-6 h-6" />
             Professional Summary
           </h3>
@@ -268,17 +213,9 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
               value={formData.summary}
               onChange={handleInputChange}
               rows={3}
-              className={
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                  : "text-black"
-              }
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
             />
-            <p
-              className={`text-sm mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm mt-2 text-gray-400">
               Briefly describe your professional background and key strengths
             </p>
           </div>
@@ -286,11 +223,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
 
         {/* Career Objective */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <Target className="w-6 h-6" />
             Career Objective
           </h3>
@@ -301,17 +234,9 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
               value={formData.objective}
               onChange={handleInputChange}
               rows={2}
-              className={
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                  : "text-black"
-              }
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
             />
-            <p
-              className={`text-sm mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm mt-2 text-gray-400">
               State your career goals and what you're looking for
             </p>
           </div>
@@ -319,11 +244,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
 
         {/* Education */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <GraduationCap className="w-6 h-6" />
             Education
           </h3>
@@ -337,17 +258,9 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
               value={formData.education}
               onChange={handleInputChange}
               rows={4}
-              className={
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                  : "text-black"
-              }
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
             />
-            <p
-              className={`text-sm mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm mt-2 text-gray-400">
               Include degrees, institutions, dates, GPA, and relevant coursework
             </p>
           </div>
@@ -355,11 +268,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
 
         {/* Skills */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <Sparkles className="w-6 h-6" />
             Skills
           </h3>
@@ -374,17 +283,9 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
               value={formData.skills}
               onChange={handleInputChange}
               rows={4}
-              className={
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                  : "text-black"
-              }
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
             />
-            <p
-              className={`text-sm mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm mt-2 text-gray-400">
               List technical skills, tools, frameworks, and soft skills
             </p>
           </div>
@@ -392,11 +293,7 @@ export default function ManualTab({ isDark, onGenerate }: ManualTabProps) {
 
         {/* Experience */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <Briefcase className="w-6 h-6" />
             Work Experience
           </h3>
@@ -416,17 +313,9 @@ Junior Developer at XYZ Tech (2020-2022)
               value={formData.experience}
               onChange={handleInputChange}
               rows={6}
-              className={
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                  : "text-black"
-              }
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
             />
-            <p
-              className={`text-sm mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm mt-2 text-gray-400">
               Include job titles, companies, dates, and key achievements with
               bullet points
             </p>
@@ -435,11 +324,7 @@ Junior Developer at XYZ Tech (2020-2022)
 
         {/* Projects */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <FileText className="w-6 h-6" />
             Projects
           </h3>
@@ -458,17 +343,9 @@ Task Management App (Open Source)
               value={formData.projects}
               onChange={handleInputChange}
               rows={4}
-              className={
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                  : "text-black"
-              }
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
             />
-            <p
-              className={`text-sm mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm mt-2 text-gray-400">
               Include personal, academic, or open source projects with
               descriptions
             </p>
@@ -477,11 +354,7 @@ Task Management App (Open Source)
 
         {/* Certifications */}
         <div className="space-y-6">
-          <h3
-            className={`text-xl font-semibold flex items-center gap-3 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h3 className="text-xl font-semibold flex items-center gap-3 text-gray-200">
             <Award className="w-6 h-6" />
             Certifications
           </h3>
@@ -494,17 +367,9 @@ Google Cloud Professional Data Engineer (2021)"
               value={formData.certifications}
               onChange={handleInputChange}
               rows={3}
-              className={
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
-                  : "text-black"
-              }
+              className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-400"
             />
-            <p
-              className={`text-sm mt-2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm mt-2 text-gray-400">
               List relevant certifications, issuing organizations, and dates
             </p>
           </div>
@@ -515,7 +380,7 @@ Google Cloud Professional Data Engineer (2021)"
             <Button
             className={`w-full py-6 text-lg font-semibold ${
               !isDark
-              ? "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
+              ? "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
               : "bg-purple-600 hover:bg-purple-700 text-white"
             }`}
             size="lg"
