@@ -1,10 +1,17 @@
-import React from 'react'
-import Dashboard from "@/components/Dashboard/Dashboard"
+// app/resume/dashboard/page.tsx
+"use client";
+
+import React from 'react';
+import Dashboard from "@/components/Dashboard/Dashboard";
+import { SessionProvider } from "next-auth/react";
+
 const DashboardPage = () => {
   return ( 
-    <div>
-        <Dashboard/>
-    </div>
-  )
+    <SessionProvider>
+      <div>
+          <Dashboard/>
+      </div>
+    </SessionProvider>
+  );
 }
-export default DashboardPage
+export default DashboardPage;

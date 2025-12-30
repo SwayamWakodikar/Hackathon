@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import { db } from "@/lib/firebase";
+import { ResumeDocument, COLLECTIONS } from "@/lib/resume";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"; // Ensure this import path is correct
 
-// Initialize OpenAI client with OpenRouter
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: process.env.OPENROUTER_API_KEY,
@@ -13,6 +17,16 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
+    // 1. Check for user session immediately
+    const session = await getServerSession(authOptions);
+    
+    if (!session || !session.user?.email) {
+      return NextResponse.json(
+        { error: 'Unauthorized: Please sign in with Google first.' },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
     const { formData, fileContent } = body;
 
@@ -24,42 +38,24 @@ export async function POST(request: NextRequest) {
     }
 
     let resumeContent = '';
-    
     if (fileContent) {
-      // If file was uploaded, use its content
       resumeContent = fileContent;
     } else if (formData) {
-      // If manual form was filled, structure the data
       const { name, email, phone, address, education, skills, experience } = formData;
-      
-      resumeContent = `
-        Name: ${name}
-        Email: ${email}
-        Phone: ${phone}
-        Address: ${address}
-        
-        Education:
-        ${education}
-        
-        Skills:
-        ${skills}
-        
-        Experience:
-        ${experience}
-      `;
+      resumeContent = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\n\nEducation:\n${education}\n\nSkills:\n${skills}\n\nExperience:\n${experience}`;
     }
 
-    // Generate resume using AI
+    // 2. Generate resume using AI
     const completion = await openai.chat.completions.create({
       model: "google/gemma-3-27b-it:free",
       messages: [
         {
           role: "system",
-          content: "You are a professional resume writer. Create a well-structured, professional resume in markdown format based on the provided information. Include appropriate sections, formatting, and professional language. Make sure it's ATS-friendly."
+          content: "You are a professional resume writer. Create a well-structured, professional resume in markdown format. Make sure it's ATS-friendly."
         },
         {
           role: "user",
-          content: `Create a professional resume based on this information:\n\n${resumeContent}\n\nReturn the resume in clean markdown format with appropriate sections.`
+          content: `Create a professional resume based on this information:\n\n${resumeContent}`
         }
       ],
       max_tokens: 2000,
@@ -68,8 +64,29 @@ export async function POST(request: NextRequest) {
 
     const generatedResume = completion.choices[0]?.message?.content || '';
 
-    // Log the generated resume to console
-    console.log('Generated Resume Markdown:', generatedResume);
+    // 3. Save to Firestore (Wrapped in a try-catch so AI result still returns if DB fails)
+    try {
+      const resumeData: ResumeDocument = {
+        markdown: generatedResume,
+        user: {
+          name: session.user.name ?? null,
+          email: session.user.email,
+          image: session.user.image ?? null,
+        },
+        updatedAt: serverTimestamp() as any,
+        originalData: formData ? { ...formData } : undefined
+      };
+
+      await setDoc(
+        doc(db, COLLECTIONS.RESUMES, session.user.email), 
+        resumeData, 
+        { merge: true }
+      );
+      console.log('Resume successfully saved to Firestore for:', session.user.email);
+    } catch (dbError) {
+      console.error('Firestore Save Error:', dbError);
+      // We continue so the user at least sees the generated resume on screen
+    }
 
     return NextResponse.json({
       success: true,
@@ -78,9 +95,12 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error generating resume:', error);
+    console.error('API Error:', error);
     return NextResponse.json(
-      { error: 'Failed to generate resume', details: error instanceof Error ? error.message : 'Unknown error' },
+      { 
+        error: 'Failed to generate resume', 
+        details: error instanceof Error ? error.message : 'Check your API key or network connection' 
+      },
       { status: 500 }
     );
   }
