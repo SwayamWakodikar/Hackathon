@@ -65,7 +65,7 @@ const FeatureSelectionPage = () => {
               title="RESUME MAKER AI"
               description="Construct elite, ATS-optimized professional narratives using advanced neural drafting."
               icon={<FileText className="w-8 h-8" />}
-              href="/resume/home" // Adjust link as needed
+              href="/resume/home" 
               buttonText="Initialize Builder"
               delay={0.2}
             />
@@ -75,7 +75,7 @@ const FeatureSelectionPage = () => {
               title="AI INTERVIEW COACH"
               description="Simulate high-pressure interview scenarios with real-time biometric and vocal feedback."
               icon={<Mic className="w-8 h-8" />}
-              href="/trainer" // Adjust link as needed
+              href="/trainer" 
               buttonText="Start Simulation"
               delay={0.4}
             />
