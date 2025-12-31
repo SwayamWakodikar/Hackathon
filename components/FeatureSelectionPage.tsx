@@ -65,7 +65,7 @@ const FeatureSelectionPage = () => {
               title="RESUME MAKER AI"
               description="Construct elite, ATS-optimized professional narratives using advanced neural drafting."
               icon={<FileText className="w-8 h-8" />}
-              href="/dashboard" // Adjust link as needed
+              href="/resume/home" // Adjust link as needed
               buttonText="Initialize Builder"
               delay={0.2}
             />
