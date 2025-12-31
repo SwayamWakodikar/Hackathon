@@ -63,7 +63,7 @@ export default function HeroSectionOne() {
               }}
               className="relative inline-block mt-2"
             >
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-cyan-400 font-black italic uppercase tracking-tighter drop-shadow-[0_0_30px_rgba(37,99,235,0.5)]">
+              <span className="relative z-10 text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-blue-600 to-cyan-400 font-black italic uppercase tracking-tighter drop-shadow-[0_0_30px_rgba(37,99,235,0.5)]">
                 Vplace
               </span>
               {/* Subtle underline glow */}
@@ -71,7 +71,7 @@ export default function HeroSectionOne() {
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
                 transition={{ delay: 1.5, duration: 1 }}
-                className="absolute -bottom-2 left-0 h-[4px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"
+                className="absolute -bottom-2 left-0 h-1 bg-linear-to-r from-transparent via-blue-500 to-transparent opacity-50"
               />
             </motion.span>
           </h1>
@@ -97,7 +97,7 @@ export default function HeroSectionOne() {
                 transition={{ delay: 1.5 + (index * 0.1) }}
                 className="group relative p-8 rounded-[2rem] bg-[#080808] border border-white/5 transition-all duration-500 overflow-hidden cursor-default"
               >
-                <div className="absolute inset-0 rounded-[2rem] p-[1.5px] bg-gradient-to-br from-blue-600 via-cyan-400 to-indigo-800 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 rounded-[2rem] p-[1.5px] bg-linear-to-br from-blue-600 via-cyan-400 to-indigo-800 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="h-full w-full bg-[#080808] rounded-[1.9rem]" />
                 </div>
                 <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-600/10 blur-[60px] rounded-full group-hover:bg-blue-600/20 transition-all duration-700" />

@@ -107,7 +107,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon, hre
       className="group relative flex flex-col justify-between p-12 rounded-[2.5rem] bg-[#080808] border border-white/5 transition-all duration-500 overflow-hidden hover:shadow-[0_0_50px_rgba(37,99,235,0.15)]"
     >
       {/* Blue Rainbow Border Effect */}
-      <div className="absolute inset-0 rounded-[2.5rem] p-[1.5px] bg-gradient-to-br from-blue-600 via-cyan-400 to-indigo-800 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
+      <div className="absolute inset-0 rounded-[2.5rem] p-[1.5px] bg-linear-to-br from-blue-600 via-cyan-400 to-indigo-800 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
         <div className="h-full w-full bg-[#080808] rounded-[2.4rem]" />
       </div>
 
@@ -143,7 +143,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon, hre
         {/* Ripple Fill Animation */}
         <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
           <div 
-            className="w-0 h-0 bg-blue-600 rounded-full group-hover/btn:w-[160%] group-hover/btn:pt-[160%] transition-all duration-[850ms]" 
+            className="w-0 h-0 bg-blue-600 rounded-full group-hover/btn:w-[160%] group-hover/btn:pt-[160%] transition-all duration-850" 
             style={{ transitionTimingFunction: 'cubic-bezier(0.8, 0, 0.2, 1)' }} 
           />
         </div>
@@ -151,7 +151,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon, hre
         {/* Secondary Shadow Wave */}
         <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
           <div 
-            className="w-0 h-0 bg-indigo-500/20 rounded-full group-hover/btn:w-[200%] group-hover/btn:pt-[200%] transition-all duration-[1100ms] delay-100"
+            className="w-0 h-0 bg-indigo-500/20 rounded-full group-hover/btn:w-[200%] group-hover/btn:pt-[200%] transition-all duration-1100 delay-100"
             style={{ transitionTimingFunction: 'cubic-bezier(0.8, 0, 0.2, 1)' }} 
           />
         </div>

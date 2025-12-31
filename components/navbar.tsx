@@ -69,7 +69,7 @@ const NavBar: React.FC = () => {
             rounded-2xl
             flex items-center justify-between
             px-8 py-3
-            z-[100]
+            z-100
             border border-white/10
             bg-black/60
             shadow-[0_20px_50px_rgba(0,0,0,0.8)]
@@ -79,7 +79,7 @@ const NavBar: React.FC = () => {
           {/* Logo */}
           <button
             onClick={(e) => handleSmoothScroll(e, 'hero')}
-            className="text-2xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600"
+            className="text-2xl font-black italic tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-600"
           >
             Vplace
           </button>

@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
         </p>
 
         {/* Feature Preview - Now with Glass Morphism to test contrast */}
-        <div className="mx-auto w-full max-w-2xl p-8 bg-white/[0.03] backdrop-blur-2xl rounded-[2rem] border border-white/[0.08] shadow-2xl mb-12">
+        <div className="mx-auto w-full max-w-2xl p-8 bg-white/3 backdrop-blur-2xl rounded-[2rem] border border-white/8 shadow-2xl mb-12">
           <h3 className="text-xl font-bold text-white mb-2">
             Key Features at a Glance 
           </h3>
@@ -67,7 +67,7 @@ const Card = ({
   title: string;
   subtitle: string;
 }) => (
-  <div className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] border border-white/[0.08] p-8 transition-all duration-500 hover:border-blue-500/40 hover:bg-white/[0.04] group">
+  <div className="bg-white/2 backdrop-blur-xl rounded-[2rem] border border-white/8 p-8 transition-all duration-500 hover:border-blue-500/40 hover:bg-white/4 group">
     <div className="h-48 flex items-center justify-center p-6 bg-zinc-900/50 rounded-2xl mb-6 border border-white/5 transition-colors group-hover:border-blue-500/20">
       <span className="text-4xl text-zinc-700 font-black tracking-tighter uppercase opacity-50">Visual</span>
     </div>
