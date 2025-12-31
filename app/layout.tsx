@@ -24,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
+      <head>
+        <link rel="icon" href="https://img.icons8.com/quill/100/7950F2/v.png" sizes="any" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
