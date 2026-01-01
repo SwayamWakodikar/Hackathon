@@ -7,6 +7,7 @@ import Particles from '../Particles';
 import Reveal from '../Anime/Reveal';
 import HeroSectionOne from '../hero-section-demo-1';
 import LightRays from '../LightRays';
+import AuthHero from '../AuthHero';
 
 const AuthLandingPage = () => {
   return (
@@ -32,8 +33,7 @@ const AuthLandingPage = () => {
       
       <main>
         <Reveal>
-          <HeroSectionOne/>
-          {/* // <HeroSection /> */}
+          <AuthHero/>
         </Reveal>
         <Reveal><ResumeEnhancerSection /></Reveal>
         <Reveal><AIBasedTrainerSection /></Reveal>

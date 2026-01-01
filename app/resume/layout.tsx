@@ -35,7 +35,7 @@ const AppSidebar = () => {
           <SidebarLink link={{ label: "Home", href: "/resume/home", icon: <IconHome className="h-5 w-5 shrink-0" /> }} />
           <SidebarLink link={{ label: "Dashboard", href: "/resume/generated-resume", icon: <IconLayoutDashboardFilled className="h-5 w-5 shrink-0" /> }} />
           <SidebarLink link={{ label: "ATS", href: "/resume/ats", icon: <IconScoreboard className="h-5 w-5 shrink-0" /> }} />
-          <SidebarLink link={{ label: "Logout", href: "/api/auth/signout", icon: <IconLogout className="h-5 w-5 shrink-0" /> }} />
+          <SidebarLink link={{ label: "Logout", href: "/api/auth/signout?callbackUrl=/", icon: <IconLogout className="h-5 w-5 shrink-0" /> }} />
         </div>
       </div>
 

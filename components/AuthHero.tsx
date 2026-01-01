@@ -25,7 +25,7 @@ const features = [
   }
 ]
 
-export default function HeroSectionOne() {
+export default function AuthHero() {
   return (
     <div id='hero' className="relative flex items-center justify-center min-h-screen bg-transparent overflow-hidden">
       <div className="px-4 w-full max-w-7xl z-10">
@@ -120,7 +120,7 @@ export default function HeroSectionOne() {
           transition={{ delay: 2.2 }}
           className="flex justify-center mt-10"
         >
-          <a href="/login" className="relative group/btn overflow-hidden px-12 py-5 rounded-2xl bg-transparent border border-white/10 text-zinc-400 font-black text-[12px] tracking-[0.5em] uppercase transition-all duration-300 active:scale-95 hover:border-blue-500/50">
+          <a href="/main" className="relative group/btn overflow-hidden px-12 py-5 rounded-2xl bg-transparent border border-white/10 text-zinc-400 font-black text-[12px] tracking-[0.5em] uppercase transition-all duration-300 active:scale-95 hover:border-blue-500/50">
             <span className="relative z-20 flex items-center justify-center gap-3 group-hover/btn:text-white transition-colors duration-700">
               Get Started <ArrowRight className="h-5 w-5 transition-transform group-hover/btn:translate-x-2" />
             </span>

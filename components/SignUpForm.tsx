@@ -22,7 +22,7 @@ export default function SignupFormDemo() {
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+          <Input id="email" placeholder="xyz@gmail.com" type="email" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
@@ -44,7 +44,7 @@ export default function SignupFormDemo() {
             type="submit"
             onClick={() =>
               signIn("google", {
-                callbackUrl: "/welcome",
+                callbackUrl: "/main",
               })
             }
           >
@@ -54,7 +54,7 @@ export default function SignupFormDemo() {
             </span>
             <BottomGradient />
           </button>
-          <a href="/register" className="text-center text-slate-400/50">Don't have an account yet ? Create one Now!!</a>
+          <a href="/register" className="text-center text-purple-500">Don't have an account yet ? Create one Now!!</a>
         </div>
       </form>
     </div>

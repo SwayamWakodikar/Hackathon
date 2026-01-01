@@ -58,7 +58,7 @@ export default function Register() {
             className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
             type="submit" onClick={() =>
                           signIn("google", {
-                            callbackUrl: "/resume/home",
+                            callbackUrl: "/main",
                           })
                         }
           >

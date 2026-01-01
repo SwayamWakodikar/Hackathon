@@ -22,7 +22,10 @@ const AppSidebar = () => {
       <div className="flex flex-col gap-8">
         <div className="flex items-center">
           <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-purple-600">
+            <a href="/welcome">
             <img src="/letter-v.svg" alt="VPlace Logo" className="h-5 w-5" />
+            </a>
+            
           </div>
           <a href="/welcome" className={`ml-2 text-lg font-semibold whitespace-nowrap text-white transition-all duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             Vplace
@@ -33,7 +36,7 @@ const AppSidebar = () => {
           <SidebarLink link={{ label: "Home", href: "/trainer", icon: <IconHome className="h-5 w-5 shrink-0" /> }} />
           <SidebarLink link={{ label: "Mock Test", href: "/trainer/mocktest", icon: <IconClipboardCheck className="h-5 w-5 shrink-0" /> }} />
           <SidebarLink link={{ label: "AI Interview", href: "/trainer/interview", icon: <IconDeviceLaptop className="h-5 w-5 shrink-0" /> }} />
-          <SidebarLink link={{ label: "Logout", href: "/api/auth/signout", icon: <IconLogout className="h-5 w-5 shrink-0" /> }} />
+          <SidebarLink link={{ label: "Logout", href: "/api/auth/signout?callbackUrl=/", icon: <IconLogout className="h-5 w-5 shrink-0" /> }} />
         </div>
       </div>
 
