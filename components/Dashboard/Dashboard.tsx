@@ -104,21 +104,21 @@ const Dashboard: React.FC = () => {
       
 
       <div className="w-full max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-left text-purple-600">
-          VPlace
+        <h1 className="text-4xl font-bold mb-8 text-left italic uppercase text-blue-600">
+          AI Resume Generator
         </h1>
       </div>
 
       <div className="flex-1 flex flex-col relative">
-        <div className="absolute top-40 left-20 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-40 left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="w-full relative z-10">
           {loading ? (
             <div className="flex justify-start p-10">
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-600" />
+              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
             </div>
           ) : hasResume ? (
-            <div className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:border-purple-500/40 flex flex-col items-start gap-6">
+            <div className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:border-blue-500/40 flex flex-col items-start gap-6">
               <h2 className="text-xl font-semibold text-white">
                 Your Generated Resume
               </h2>
@@ -129,7 +129,7 @@ const Dashboard: React.FC = () => {
               />
             </div>
           ) : (
-            <div className="w-full min-h-[400px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center gap-8 shadow-2xl transition-all duration-300 hover:border-purple-500/40">
+            <div className="w-full min-h-[400px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center gap-8 shadow-2xl transition-all duration-300 hover:border-blue-500/40">
               <div className="text-center max-w-lg">
                 <h3 className="text-2xl font-bold mb-2 text-white">
                   No Resume Found
@@ -141,7 +141,7 @@ const Dashboard: React.FC = () => {
               </div>
               <a
                 href="/resume/home"
-                className="whitespace-nowrap px-8 py-4 rounded-xl bg-purple-600 text-white font-bold hover:bg-purple-700 transition-all text-center shadow-lg shadow-purple-600/20"
+                className="whitespace-nowrap px-8 py-4 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all text-center shadow-lg shadow-blue-600/20"
               >
                 Generate Resume
               </a>

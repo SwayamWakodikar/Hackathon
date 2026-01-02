@@ -52,12 +52,12 @@ const CompanySelection = () => {
   return (
     <div className="p-8 flex-1 bg-transparent flex flex-col relative min-h-screen">
       {/* Background Glow Effect - cite: [app/trainer/mocktest/page.tsx] */}
-      <div className="absolute top-40 left-20 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-40 left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Top Left Heading */}
       <div className="w-full max-w-7xl mx-auto z-10">
         <h1 className="text-4xl font-bold mb-8 text-left">
-          <span className="text-purple-600">Mock Test</span>
+          <span className="text-blue-600">Mock Test</span>
         </h1>
         <p className="text-gray-400 mb-12">Select a company to begin your specialized assessment.</p>
       </div>
@@ -68,7 +68,7 @@ const CompanySelection = () => {
           {COMPANIES.map((company) => (
             <Card 
               key={company.slug}
-              className="cursor-pointer bg-white/5 backdrop-blur-xl border-white/10 hover:border-purple-500/50 hover:bg-white/10 transition-all duration-300 group"
+              className="cursor-pointer bg-white/5 backdrop-blur-xl border-white/10 hover:border-blue-500/50 hover:bg-white/10 transition-all duration-300 group"
               // UPDATED: Points to /[companySlug] instead of /companies/[companySlug]
               onClick={() => router.push(`/trainer/mocktest/${company.slug}`)}
             >
@@ -77,7 +77,7 @@ const CompanySelection = () => {
                   {company.icon}
                 </div>
                 <div>
-                  <CardTitle className="text-xl text-white group-hover:text-purple-400 transition-colors">
+                  <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">
                     {company.name}
                   </CardTitle>
                 </div>

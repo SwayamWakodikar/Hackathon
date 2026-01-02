@@ -26,15 +26,15 @@ const InterviewPage = () => {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center max-w-md"
         >
-          <div className="h-24 w-24 rounded-full bg-purple-500/10 flex items-center justify-center mb-6">
-            <IconDeviceLaptop className="w-12 h-12 text-purple-600 dark:text-purple-400" />
+          <div className="h-24 w-24 rounded-full bg-blue-500/10 flex items-center justify-center mb-6">
+            <IconDeviceLaptop className="w-12 h-12 text-blue-600 dark:text-blue-400" />
           </div>
           
           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             AI Interview
           </h1>
           
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-sm font-medium mb-4">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
             <span className="relative flex h-2 w-2 mr-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-current"></span>

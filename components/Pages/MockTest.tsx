@@ -76,7 +76,7 @@ const MockTestPage = ({ companySlug }: Props) => {
           <h1 className="text-2xl font-bold mb-4">Assessment Not Found</h1>
           <button
             onClick={() => router.push("/trainer/mocktest")}
-            className="text-purple-400 font-bold hover:underline"
+            className="text-blue-400 font-bold hover:underline"
           >
             Back to selection
           </button>
@@ -87,11 +87,11 @@ const MockTestPage = ({ companySlug }: Props) => {
 
   return (
     <div className="p-8 flex-1 bg-transparent flex flex-col relative min-h-screen">
-      <div className="absolute top-40 left-20 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-40 left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="w-full max-w-7xl mx-auto z-10">
         <h1 className="text-4xl font-bold mb-8 text-left">
-          <span className="text-purple-600">{companyData.name}</span> Mock Test
+          <span className="text-blue-600">{companyData.name}</span> Mock Test
         </h1>
       </div>
 
@@ -99,9 +99,9 @@ const MockTestPage = ({ companySlug }: Props) => {
         <div className="w-full max-w-4xl">
           {/* START SCREEN */}
           {gameState === "start" && (
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-10 flex flex-col items-start text-left shadow-2xl transition-all duration-300 hover:border-purple-500/40">
-              <div className="w-16 h-16 bg-purple-600/20 rounded-xl flex items-center justify-center mb-6">
-                <IconClipboardCheck className="text-purple-500 w-8 h-8" />
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-10 flex flex-col items-start text-left shadow-2xl transition-all duration-300 hover:border-blue-500/40">
+              <div className="w-16 h-16 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                <IconClipboardCheck className="text-blue-500 w-8 h-8" />
               </div>
               <h2 className="text-3xl font-bold text-white mb-4">
                 Placement Readiness Test
@@ -112,7 +112,7 @@ const MockTestPage = ({ companySlug }: Props) => {
               </p>
               <button
                 onClick={startQuiz}
-                className="px-10 py-4 rounded-xl bg-purple-600 text-white font-bold hover:bg-purple-700 transition-all flex items-center justify-center gap-2 group"
+                className="px-10 py-4 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 group"
               >
                 Start Assessment{" "}
                 <IconChevronRight className="group-hover:translate-x-1 transition-transform" />
@@ -130,7 +130,7 @@ const MockTestPage = ({ companySlug }: Props) => {
                   </h2>
                   <p className="text-sm text-gray-500">
                     Question{" "}
-                    <span className="text-purple-400 font-bold">
+                    <span className="text-blue-400 font-bold">
                       {currentQuestion + 1}
                     </span>{" "}
                     of {QUESTIONS.length}
@@ -142,7 +142,7 @@ const MockTestPage = ({ companySlug }: Props) => {
                     className={
                       timeLeft < 10
                         ? "text-red-500 animate-pulse"
-                        : "text-purple-400"
+                        : "text-blue-400"
                     }
                   />
                   <span
@@ -172,7 +172,7 @@ const MockTestPage = ({ companySlug }: Props) => {
                       onClick={() => setSelectedOption(option)}
                       className={`p-5 rounded-xl border text-left transition-all duration-200 group flex items-center justify-between ${
                         selectedOption === option
-                          ? "bg-purple-600/20 border-purple-500 text-white shadow-[0_0_30px_rgba(147,51,234,0.1)]"
+                          ? "bg-blue-600/20 border-blue-500 text-white shadow-[0_0_30px_rgba(147,51,234,0.1)]"
                           : "bg-white/5 border-white/10 text-gray-400 hover:border-white/30 hover:bg-white/10"
                       }`}
                     >
@@ -187,7 +187,7 @@ const MockTestPage = ({ companySlug }: Props) => {
                     onClick={handleNext}
                     className={`px-12 py-4 rounded-xl font-bold transition-all ${
                       selectedOption
-                        ? "bg-purple-600 text-white hover:bg-purple-700 shadow-lg shadow-purple-900/40"
+                        ? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-900/40"
                         : "bg-white/10 text-gray-600 cursor-not-allowed"
                     }`}
                   >
@@ -214,7 +214,7 @@ const MockTestPage = ({ companySlug }: Props) => {
                   <div className="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">
                     Final Score
                   </div>
-                  <div className="text-5xl font-black text-purple-500">
+                  <div className="text-5xl font-black text-blue-500">
                     {score}
                     <span className="text-2xl text-gray-600">
                       /{QUESTIONS.length}
@@ -226,7 +226,7 @@ const MockTestPage = ({ companySlug }: Props) => {
               <div className="flex gap-4 w-full">
                 <button
                   onClick={startQuiz}
-                  className="flex-1 py-4 rounded-xl border border-purple-600/50 text-purple-400 font-bold hover:bg-purple-600 hover:text-white transition-all flex items-center justify-center gap-2"
+                  className="flex-1 py-4 rounded-xl border border-blue-600/50 text-blue-400 font-bold hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center gap-2"
                 >
                   <IconRefresh size={20} /> Retake Assessment
                 </button>

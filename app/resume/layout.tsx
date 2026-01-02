@@ -22,7 +22,7 @@ const AppSidebar = () => {
     <SidebarBody className="h-full justify-between overflow-hidden">
       <div className="flex flex-col gap-8">
         <div className="flex items-center">
-          <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-purple-600">
+          <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-blue-600">
             <a href="/welcome">
             <img src="/letter-v.svg" alt="VPlace Logo" className="h-5 w-5" /></a>
           </div>
@@ -42,9 +42,9 @@ const AppSidebar = () => {
       <div className="flex items-center py-3 border-t border-gray-800 min-w-8">
         <div className="h-8 w-8 shrink-0">
           {session?.user?.image ? (
-            <img src={session.user.image} className="h-8 w-8 rounded-full border border-purple-500/50" alt="User" />
+            <img src={session.user.image} className="h-8 w-8 rounded-full border border-blue-500/50" alt="User" />
           ) : (
-            <div className="h-8 w-8 rounded-full bg-purple-600 flex items-center justify-center text-white text-xs font-bold">
+            <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
               {session?.user?.name?.charAt(0) || "U"}
             </div>
           )}

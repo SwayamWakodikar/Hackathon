@@ -18,7 +18,7 @@ const App = () => {
           <div className="h-px w-full bg-linear-to-r from-transparent via-white/5 to-transparent mb-8" />
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[12px] tracking-[0.5em] text-purple-300 uppercase font-black italic">
+            <p className="text-[12px] tracking-[0.5em] text-blue-300 uppercase font-black italic">
               &copy; 2026 Vplace <span className="text-gray-500/40">//</span> All rights reserved.
             </p>
             <div className="flex gap-15">
@@ -69,10 +69,10 @@ const App = () => {
               }
               ].map((member, index) => (
               <div key={index} className="text-[10px] text-zinc-500">
-                <p className="font-bold uppercase text-purple-300">{member.name}</p>
-                {member.role && <p className="italic text-purple-400">{member.role}</p>}
-                {member.contact && <p className='text-purple-500'>Contact: {member.contact}</p>}
-                <div className="flex gap-4 mt-1 text-purple-400">
+                <p className="font-bold uppercase text-blue-300">{member.name}</p>
+                {member.role && <p className="italic text-blue-400">{member.role}</p>}
+                {member.contact && <p className='text-blue-500'>Contact: {member.contact}</p>}
+                <div className="flex gap-4 mt-1 text-blue-400">
                 {member.links.map((link, linkIndex) => (
                   <a 
                   key={linkIndex} 
