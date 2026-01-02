@@ -14,7 +14,8 @@ import {
   IconBrandGoogle, 
   IconBrandAmazon, 
   IconBrandApple, 
-  IconBrandWindows as IconBrandMicrosoft
+  IconBrandWindows as IconBrandMicrosoft,
+  IconLayoutGrid
 } from "@tabler/icons-react";
 
 // Ensure these slugs match the keys in your questions.ts file exactly
@@ -23,7 +24,7 @@ const COMPANIES = [
     name: "Google",
     slug: "google",
     description: "Focus on DSA, System Design, and Go/Python.",
-    icon: <IconBrandGoogle className="text-blue-500" size={32} />,
+    icon: <img className="w-8 h-8" src="https://static.cdnlogo.com/logos/g/38/google-icon.svg" />,
   },
   {
     name: "Amazon",
@@ -35,13 +36,13 @@ const COMPANIES = [
     name: "Microsoft",
     slug: "microsoft",
     description: "Tests on OS fundamentals, C#, and Azure ecosystem.",
-    icon: <IconBrandMicrosoft className="text-teal-500" size={32} />,
+    icon: <img className="w-8 h-8" src="https://static.cdnlogo.com/logos/m/95/microsoft.svg" />,
   },
   {
     name: "Apple",
     slug: "apple",
     description: "Advanced Low-level programming and Swift/Objective-C.",
-    icon: <IconBrandApple className="text-gray-200" size={32} />,
+    icon: <img className="w-8 h-8" src="https://static.cdnlogo.com/logos/a/36/apple.svg" /  >,
   },
 ];
 
