@@ -5,20 +5,20 @@ import { Sparkles, FileText, Zap, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const features = [
-  { 
-    icon: <Sparkles className="w-6 h-6" />, 
-    title: "AI GENERATION", 
-    description: "Original content, professionally refined for elite roles." 
+  {
+    icon: <Sparkles className="w-6 h-6" />,
+    title: "Resume Generation",
+    description: "Leverage cutting-edge AI to architect high-impact resumes that command attention from elite recruiters.",
   },
-  { 
-    icon: <FileText className="h-6 w-6" />, 
-    title: "MULTIPLE TEMPLATES", 
-    description: "Choose from various professional resume templates." 
+  {
+    icon: <FileText className="h-6 w-6" />,
+    title: "ATS Score Checker",
+    description: "Ensure your profile survives the digital gatekeepers with precision ATS optimization and scoring.",
   },
-  { 
-    icon: <Zap className="h-6 w-6" />, 
-    title: "FAST & EFFICIENT", 
-    description: "Generate a complete resume in under 2 minutes." 
+  {
+    icon: <Zap className="h-6 w-6" />,
+    title: "Resume Enhancer",
+    description: "Transform standard applications into professional masterpieces with AI-driven structural refinements.",
   },
 ];
 
