@@ -41,7 +41,7 @@ Hackathon/
 │   └── utils.ts              # Common helper utilities
 ├── public/                   # Static assets (SVGs, favicons)
 └── package.json              # Project dependencies and scripts
-
+'''
 ✨ Key Features
 AI Resume Generator
 Transforms raw user inputs or existing resume content into professionally structured, markdown-formatted resumes using large language models.
