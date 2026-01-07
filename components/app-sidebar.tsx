@@ -14,6 +14,7 @@ import {
     IconBriefcase
 } from "@tabler/icons-react"
 import { useSession, signOut } from "next-auth/react"
+import { usePathname } from "next/navigation"
 
 import {
     Sidebar,
@@ -33,22 +34,40 @@ import { cn } from "@/lib/utils"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const { data: session } = useSession()
+    const { setOpen } = useSidebar()
+    const pathname = usePathname()
     const [resumeOpen, setResumeOpen] = React.useState(true)
     const [interviewOpen, setInterviewOpen] = React.useState(false)
 
+    React.useEffect(() => {
+        if (pathname?.startsWith('/resume')) {
+            setResumeOpen(true);
+            setInterviewOpen(false);
+        } else if (pathname?.startsWith('/trainer')) {
+            setInterviewOpen(true);
+            setResumeOpen(false);
+        }
+    }, [pathname]);
+
     return (
-        <Sidebar collapsible="icon" className="border-r border-white/5 bg-black/50 backdrop-blur-xl" {...props}>
+        <Sidebar
+            collapsible="icon"
+            className="border-r border-white/5 bg-black/50 backdrop-blur-xl"
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+            {...props}
+        >
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" asChild className="hover:bg-transparent active:bg-transparent">
+                        <SidebarMenuButton size="lg" asChild className="hover:bg-transparent active:bg-transparent p-0">
                             <a href="/welcome">
                                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-600 text-sidebar-primary-foreground shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                                     <img src="/letter-v.svg" alt="VPlace Logo" className="size-4 invert" />
                                 </div>
-                                <div className="flex flex-col gap-0.5 leading-none">
-                                    <span className="font-bold italic tracking-tighter text-white text-lg">Vplace</span>
-                                    <span className="text-xs font-medium text-zinc-500">Dashboard</span>
+                                <div className="flex flex-col gap-0.5 leading-none transition-opacity duration-200">
+                                    <span className="font-bold italic tracking-tighter text-white text-lg transition-opacity duration-200 whitespace-nowrap">Vplace</span>
+                                    <span className="text-xs font-medium text-zinc-500 transition-opacity duration-200 whitespace-nowrap">Dashboard</span>
                                 </div>
                             </a>
                         </SidebarMenuButton>
@@ -60,8 +79,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild tooltip="Home">
                             <a href="/resume/home">
-                                <IconHome className="text-zinc-400" />
-                                <span>Home</span>
+                                <IconHome className="text-zinc-400 size-8 shrink-0" />
+                                <span className="transition-opacity duration-200 whitespace-nowrap">Home</span>
                             </a>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -73,8 +92,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             className="justify-between"
                         >
                             <div className="flex items-center gap-2">
-                                <IconFilePlus className="text-zinc-400" />
-                                <span>Resume Maker</span>
+                                <IconFilePlus className="text-zinc-400 size-5 shrink-0" />
+                                <span className="transition-opacity duration-200 whitespace-nowrap">Resume Maker</span>
                             </div>
                             <IconChevronRight className={cn("ml-auto transition-transform duration-200", resumeOpen && "rotate-90")} />
                         </SidebarMenuButton>
@@ -83,24 +102,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/resume/home">
                                         <a className="flex items-center gap-2">
-                                            <IconFilePlus className="size-4" />
-                                            <span>Resume Creator</span>
+                                            <IconFilePlus className="size-4 shrink-0" />
+                                            <span className="transition-opacity duration-200 whitespace-nowrap">Resume Creator</span>
                                         </a>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/resume/ats">
                                         <a className="flex items-center gap-2">
-                                            <IconTargetArrow className="size-4" />
-                                            <span>ATS Score</span>
+                                            <IconTargetArrow className="size-4 shrink-0" />
+                                            <span className="transition-opacity duration-200 whitespace-nowrap">ATS Score</span>
                                         </a>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/resume/home#ResumeBuilder">
                                         <a className="flex items-center gap-2">
-                                            <IconSparkles className="size-4" />
-                                            <span>Resume Enhancer</span>
+                                            <IconSparkles className="size-4 shrink-0" />
+                                            <span className="transition-opacity duration-200 whitespace-nowrap">Resume Enhancer</span>
                                         </a>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
@@ -115,8 +134,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             className="justify-between"
                         >
                             <div className="flex items-center gap-2">
-                                <IconBriefcase className="text-zinc-400" />
-                                <span>AI Interviews</span>
+                                <IconBriefcase className="text-zinc-400 size-5 shrink-0" />
+                                <span className="transition-opacity duration-200 whitespace-nowrap">AI Interviews</span>
                             </div>
                             <IconChevronRight className={cn("ml-auto transition-transform duration-200", interviewOpen && "rotate-90")} />
                         </SidebarMenuButton>
@@ -126,16 +145,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/trainer/interview/mock-interview">
                                         <a className="flex items-center gap-2">
-                                            <IconMicrophone className="size-4" />
-                                            <span>Professional Session</span>
+                                            <IconMicrophone className="size-4 shrink-0" />
+                                            <span className="transition-opacity duration-200 whitespace-nowrap">Professional Session</span>
                                         </a>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/trainer/interview/ai-interview">
                                         <a className="flex items-center gap-2">
-                                            <IconRobot className="size-4" />
-                                            <span>AI Based Session</span>
+                                            <IconRobot className="size-4 shrink-0" />
+                                            <span className="transition-opacity duration-200 whitespace-nowrap">AI Based Session</span>
                                         </a>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
@@ -144,8 +163,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/trainer/mocktest">
                                         <a className="flex items-center gap-2">
-                                            <IconCertificate className="size-4" />
-                                            <span>Mock Tests</span>
+                                            <IconCertificate className="size-4 shrink-0" />
+                                            <span className="transition-opacity duration-200 whitespace-nowrap">Mock Tests</span>
                                         </a>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
@@ -158,15 +177,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton onClick={() => signOut({ callbackUrl: '/' })} className="text-red-500 hover:text-red-600 hover:bg-red-500/10">
-                            <IconLogout />
-                            <span>Logout</span>
+                            <IconLogout className="size-5 shrink-0" />
+                            <span className="transition-opacity duration-200 whitespace-nowrap">Logout</span>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
 
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             size="lg"
-                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground p-0"
                         >
                             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-600/20 border border-blue-500/50 text-blue-400">
                                 {session?.user?.image ? (
@@ -175,9 +194,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                     <span className="text-xs font-bold">{session?.user?.name?.charAt(0) || "U"}</span>
                                 )}
                             </div>
-                            <div className="grid flex-1 text-left text-sm leading-tight">
-                                <span className="truncate font-semibold text-white">{session?.user?.name || "User"}</span>
-                                <span className="truncate text-xs text-zinc-500">Pro Plan</span>
+                            <div className="grid flex-1 text-left text-sm leading-tight transition-opacity duration-200">
+                                <span className="truncate font-semibold text-white transition-opacity duration-200 whitespace-nowrap">{session?.user?.name || "User"}</span>
+                                <span className="truncate text-xs text-zinc-500 transition-opacity duration-200 whitespace-nowrap">Pro Plan</span>
                             </div>
                             <div className="ml-auto size-2 rounded-full bg-green-500 border border-black" />
                         </SidebarMenuButton>
