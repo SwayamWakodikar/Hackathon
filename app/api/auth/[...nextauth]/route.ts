@@ -11,6 +11,14 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: appconfig.GOOGLE_CLIENT_ID!,
       clientSecret: appconfig.GOOGLE_CLIENT_SECRET!,
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+        };
+      },
     }),
   ],
 
@@ -22,11 +30,11 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
 
-    async jwt({ token, account, profile }) {
-      if (account && profile) {
-        token.email = profile.email;
-        token.name = profile.name;
-        token.picture = profile.image;
+    async jwt({ token, account, user }) {
+      if (account && user) {
+        token.email = user.email;
+        token.name = user.name;
+        token.picture = user.image;
       }
       return token;
     },
