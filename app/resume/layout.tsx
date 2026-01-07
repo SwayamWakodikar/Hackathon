@@ -18,7 +18,6 @@ const AppSidebar = () => {
   const { data: session } = useSession();
 
   return (
-    // Ensure SidebarBody is forced to take full height of the parent
     <SidebarBody className="h-full justify-between overflow-hidden">
       <div className="flex flex-col gap-8">
         <div className="flex items-center">

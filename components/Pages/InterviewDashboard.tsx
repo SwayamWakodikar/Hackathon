@@ -42,7 +42,6 @@ const InterviewDashboard: React.FC = () => {
             <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
           ) : (
             <div className="flex flex-col md:flex-row gap-10 w-full max-w-6xl justify-center">
-              {/* Card 1: AI Interview */}
               <div className="flex-1 max-w-lg bg-transparent backdrop-blur-lg border hover:border-blue-500 rounded-3xl p-8 flex flex-col justify-between min-h-[500px] shadow-lg shadow-black/50 hover:shadow-2xl hover:shadow-blue-600/40 transition-all duration-300 group">
                 <div className="space-y-6">
                   <div className="w-fit rounded-xl border border-blue-500/30 p-3.5 bg-blue-950/30 group-hover:border-blue-400 group-hover:bg-blue-900/40 transition-all">
@@ -62,8 +61,6 @@ const InterviewDashboard: React.FC = () => {
                   Start Session
                 </button>
               </div>
-
-              {/* Card 2: Mock Test */}
               <div className="flex-1 max-w-lg bg-transparent backdrop-blur-lg border hover:border-blue-500 rounded-3xl p-8 flex flex-col justify-between min-h-[500px] shadow-lg shadow-black/50 hover:shadow-2xl hover:shadow-blue-600/40 transition-all duration-300 group">
                 <div className="space-y-6">
                   <div className="w-fit rounded-xl border border-blue-500/30 p-3.5 bg-blue-950/30 group-hover:border-blue-400 group-hover:bg-blue-900/40 transition-all">

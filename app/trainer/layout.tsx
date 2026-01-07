@@ -18,12 +18,12 @@ const AppSidebar = () => {
   const { data: session } = useSession();
 
   return (
-    <SidebarBody className="h-screen justify-between overflow-hidden">
+    <SidebarBody className="h-screen justify-between overflow-hidden bg-blue-950/20 backdrop-blur-md border-r border-blue-500/20">
       <div className="flex flex-col gap-8">
         <div className="flex items-center">
-          <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-blue-600">
+          <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-blue-600 shadow-lg shadow-blue-600/40">
             <a href="/welcome">
-            <img src="/letter-v.svg" alt="VPlace Logo" className="h-5 w-5" />
+            <img src="/letter-v.svg" alt="VPlace Logo" className="h-5 w-5 invert brightness-0" />
             </a>
             
           </div>
@@ -40,12 +40,12 @@ const AppSidebar = () => {
         </div>
       </div>
 
-      <div className="flex items-center py-3 border-t border-gray-800 min-w-8">
+      <div className="flex items-center py-3 border-t border-blue-500/20 min-w-8">
         <div className="h-8 w-8 shrink-0 flex-none">
           {session?.user?.image ? (
             <img src={session.user.image} className="h-8 w-8 rounded-full border border-blue-500/50" alt="User" />
           ) : (
-            <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+            <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-blue-600/40">
               {session?.user?.name?.charAt(0) || "U"}
             </div>
           )}
