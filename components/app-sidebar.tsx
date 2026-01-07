@@ -99,6 +99,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         </SidebarMenuButton>
                         {resumeOpen && (
                             <SidebarMenuSub>
+                                <div className="px-2 py-1.5 text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Builder</div>
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/resume/home">
                                         <a className="flex items-center gap-2">
@@ -107,6 +108,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                         </a>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
+
+                                <div className="px-2 py-1.5 text-[10px] font-bold text-zinc-600 uppercase tracking-widest mt-2">Optimization</div>
                                 <SidebarMenuSubItem>
                                     <SidebarMenuSubButton asChild href="/resume/ats">
                                         <a className="flex items-center gap-2">
@@ -196,9 +199,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             </div>
                             <div className="grid flex-1 text-left text-sm leading-tight transition-opacity duration-200">
                                 <span className="truncate font-semibold text-white transition-opacity duration-200 whitespace-nowrap">{session?.user?.name || "User"}</span>
-                                <span className="truncate text-xs text-zinc-500 transition-opacity duration-200 whitespace-nowrap">Pro Plan</span>
+                                {/* <span className="truncate text-xs text-zinc-500 transition-opacity duration-200 whitespace-nowrap">Pro Plan</span> */}
                             </div>
-                            <div className="ml-auto size-2 rounded-full bg-green-500 border border-black" />
+                            {/* <div className="ml-auto size-2 rounded-full bg-green-500 border border-black" /> */}
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
