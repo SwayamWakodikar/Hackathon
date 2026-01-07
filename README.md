@@ -41,8 +41,8 @@ Hackathon/
 │   └── utils.ts              # Common helper utilities
 ├── public/                   # Static assets (SVGs, favicons)
 └── package.json              # Project dependencies and scripts
-'''
-✨ Key Features
+```
+## ✨ Key Features
 AI Resume Generator
 Transforms raw user inputs or existing resume content into professionally structured, markdown-formatted resumes using large language models.
 ATS Optimization
@@ -51,34 +51,44 @@ AI Interview Simulator (Coming Soon)
 An intelligent interview preparation module for practicing technical and behavioral interview rounds.
 Secure Cloud Storage
 All user data and generated resumes are securely stored in Firebase Firestore and linked to authenticated Google accounts.
-🚀 Getting Started
+## 🚀 Getting Started
 1. Prerequisites
 Ensure the following are installed:
 Node.js
+```
 npm or yarn
-2. Installation
+```
+3. Installation
 Copy code
 Bash
+```
 npm install
+```
 or
 Copy code
 Bash
+```
 yarn install
-3. Run Development Server
+```
+5. Run Development Server
 Copy code
 Bash
+```
 npm run dev
+```
 or
 Copy code
 Bash
+```
 yarn dev
+```
 Open http://localhost:3000 in your browser to view the application.
 
 
-👥 Team Members
-Swayam Wakodikar – Frontend Developer
-Krish Patel – UI/UX Designer
-Aryan Vishwakarma – Backend Developer
-Vedant Harane – Database Administrator
+## 👥 Team Members
+### Swayam Wakodikar – Frontend Developer
+### Krish Patel – UI/UX Designer
+### Aryan Vishwakarma – Backend Developer
+### Vedant Harane – Database Administrator
 📄 License
 © 2026 Vplace. All rights reserved.
