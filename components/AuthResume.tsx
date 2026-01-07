@@ -22,7 +22,7 @@ const features = [
   },
 ];
 
-const ResumeEnhancerSection: React.FC = () => {
+const AuthResume: React.FC = () => {
   return (
     <section id="ResumeBuilder" className="relative py-40 bg-transparent px-6 ">
       <div className="container mx-auto max-w-7xl">
@@ -69,7 +69,7 @@ const ResumeEnhancerSection: React.FC = () => {
 
               {/* REDIRECT BUTTON - LINKED TO DASHBOARD */}
               <Link 
-                href="/login" 
+                href="/resume/home" 
                 className="relative group/btn overflow-hidden w-full py-5 rounded-2xl bg-transparent border border-white/10 text-zinc-400 font-black text-[10px] tracking-[0.4em] uppercase transition-all duration-300 active:scale-95 hover:border-blue-500/50 block text-center"
               >
                 <span className="relative z-20 flex items-center justify-center gap-2 transition-colors duration-700 group-hover/btn:text-white">
@@ -100,4 +100,4 @@ const ResumeEnhancerSection: React.FC = () => {
   );
 };
 
-export default ResumeEnhancerSection;
+export default AuthResume;

@@ -23,8 +23,8 @@ export default function TabSelector({
           size="lg"
           className={`flex items-center gap-2 ${
             activeTab === 'upload' 
-              ? 'bg-purple-600 hover:bg-purple-700 text-white border-purple-600' 
-              : 'border-purple-600! text-purple-600! hover:bg-purple-50! bg-transparent!'
+              ? 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600' 
+              : 'border-blue-600! text-blue-600! hover:bg-blue-50! bg-transparent!'
           }`}
         >
           <Upload className="w-5 h-5" />
@@ -36,8 +36,8 @@ export default function TabSelector({
           size="lg"
           className={`flex items-center gap-2 ${
             activeTab === 'manual' 
-              ? 'bg-purple-600 hover:bg-purple-700 text-white border-purple-600' 
-              : 'border-purple-600! text-purple-600! hover:bg-purple-50! bg-transparent!'
+              ? 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600' 
+              : 'border-blue-600! text-blue-600! hover:bg-blue-50! bg-transparent!'
           }`}
         >
           <FileText className="w-5 h-5" />

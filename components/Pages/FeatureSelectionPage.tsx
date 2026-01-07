@@ -58,7 +58,7 @@ const FeatureSelectionPage = () => {
           </div>
 
           {/* --- CARDS SECTION --- */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             
             {/* CARD 1: RESUME MAKER AI */}
             <FeatureCard 
@@ -70,17 +70,17 @@ const FeatureSelectionPage = () => {
               delay={0.2}
             />
 
-            {/* CARD 2: AI INTERVIEWS */}
+            {/* CARD 2: AI PLACEMENT TRAINER */}
             <FeatureCard 
-              title="AI INTERVIEW COACH"
-              description="Simulate high-pressure interview scenarios with real-time biometric and vocal feedback."
+              title="AI PLACEMENT TRAINER"
+              description="Engage in one-to-one human-based interviews and online mock tests for comprehensive preparation."
               icon={<Mic className="w-8 h-8" />}
               href="/trainer" 
-              buttonText="Start Simulation"
+              buttonText="Start Training"
               delay={0.4}
             />
 
-          </div>
+            </div>
         </main>
       </div>
     </>

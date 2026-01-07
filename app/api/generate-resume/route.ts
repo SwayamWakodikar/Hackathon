@@ -51,11 +51,11 @@ export async function POST(request: NextRequest) {
       messages: [
         {
           role: "system",
-          content: "You are a professional resume writer. Create a well-structured, professional resume in markdown format. Make sure it's ATS-friendly."
+          content: "You are a professional resume writer. Create a well-structured, professional resume in markdown format ONLY. Do NOT include any explanations, notes, or commentary. Only output the resume content in markdown. The resume should be ATS-friendly and contain: 1. Name as title, 2. Contact information, 3. Summary (if provided), 4. Education, 5. Skills, 6. Experience, 7. Other relevant sections. Use proper markdown formatting with headers, lists, and bullet points."
         },
         {
           role: "user",
-          content: `Create a professional resume based on this information:\n\n${resumeContent}`
+          content: `Create a professional resume based on this information. Output ONLY the resume in markdown format with no additional text:\n\n${resumeContent}`
         }
       ],
       max_tokens: 2000,

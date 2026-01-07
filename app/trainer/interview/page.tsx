@@ -1,13 +1,16 @@
-"use client"
-import { SessionProvider } from 'next-auth/react'
+"use client";
+
 import React from 'react'
+import { SessionProvider } from "next-auth/react";
+import InterviewDashboard from '@/components/Pages/InterviewDashboard';
 
 const page = () => {
   return (
     <SessionProvider>
-        <div>interview</div>
+    <div>
+      <InterviewDashboard/>
+    </div>
     </SessionProvider>
-    
   )
 }
 

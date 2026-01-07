@@ -54,7 +54,7 @@ export default function SignupFormDemo() {
             </span>
             <BottomGradient />
           </button>
-          <a href="/register" className="text-center text-purple-500">Don't have an account yet ? Create one Now!!</a>
+          <a href="/register" className="text-center text-blue-500">Don't have an account yet ? Create one Now!!</a>
         </div>
       </form>
     </div>

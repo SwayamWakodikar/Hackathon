@@ -14,7 +14,7 @@ const trainerFeatures = [
   },
 ];
 
-const AIBasedTrainerSection: React.FC = () => {
+const AuthTrainerSection: React.FC = () => {
   return (
     <section id="AI Trainer" className="relative py-34 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
@@ -61,7 +61,7 @@ const AIBasedTrainerSection: React.FC = () => {
 
               {/* THE "HEAVY START" REVEAL RIPPLE BUTTON */}
               <button className="relative group/btn overflow-hidden w-full py-6 rounded-2xl bg-transparent border border-white/10 text-zinc-400 font-black text-[10px] tracking-[0.4em] uppercase transition-all duration-300 active:scale-95 hover:border-blue-500/50">
-                <a href="/login" className="relative z-20 flex items-center justify-center gap-2 transition-colors duration-700 group-hover/btn:text-white">
+                <a href="/trainer" className="relative z-20 flex items-center justify-center gap-2 transition-colors duration-700 group-hover/btn:text-white">
                   Begin Training <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-2" />
                 </a>
                 
@@ -89,4 +89,4 @@ const AIBasedTrainerSection: React.FC = () => {
   );
 };
 
-export default AIBasedTrainerSection;
+export default AuthTrainerSection;

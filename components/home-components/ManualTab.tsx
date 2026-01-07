@@ -373,8 +373,8 @@ Google Cloud Professional Data Engineer (2021)"
             <Button
             className={`w-full py-6 text-lg font-semibold ${
               !isDark
-              ? "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
-              : "bg-purple-600 hover:bg-purple-700 text-white"
+              ? "bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
             }`}
             size="lg"
             onClick={() => {

@@ -7,10 +7,9 @@ import {
   IconHome,
   IconDeviceLaptop,
   IconClipboardCheck,
-  IconScoreboard,
-  IconSettings,
   IconLogout,
 } from "@tabler/icons-react";
+import Particles from "@/components/Particles";
 
 // Extracted Sidebar Component
 const AppSidebar = () => {
@@ -18,14 +17,13 @@ const AppSidebar = () => {
   const { data: session } = useSession();
 
   return (
-    <SidebarBody className="h-screen justify-between overflow-hidden">
+    <SidebarBody className="h-full justify-between overflow-hidden">
       <div className="flex flex-col gap-8">
         <div className="flex items-center">
-          <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-purple-600">
+          <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-blue-600">
             <a href="/welcome">
             <img src="/letter-v.svg" alt="VPlace Logo" className="h-5 w-5" />
             </a>
-            
           </div>
           <a href="/welcome" className={`ml-2 text-lg font-semibold whitespace-nowrap text-white transition-all duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             Vplace
@@ -43,9 +41,9 @@ const AppSidebar = () => {
       <div className="flex items-center py-3 border-t border-gray-800 min-w-8">
         <div className="h-8 w-8 shrink-0 flex-none">
           {session?.user?.image ? (
-            <img src={session.user.image} className="h-8 w-8 rounded-full border border-purple-500/50" alt="User" />
+            <img src={session.user.image} className="h-8 w-8 rounded-full border border-blue-500/50" alt="User" />
           ) : (
-            <div className="h-8 w-8 rounded-full bg-purple-600 flex items-center justify-center text-white text-xs font-bold">
+            <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
               {session?.user?.name?.charAt(0) || "U"}
             </div>
           )}
@@ -62,14 +60,22 @@ export default function TrainerLayout({ children }: { children: React.ReactNode 
   return (
     <SessionProvider>
       <Sidebar>
-      <div className="flex min-h-screen bg-transparent">
-        <AppSidebar />
-        <main className="flex-1 flex flex-col">
-          {children}
-        </main>
-      </div>
-    </Sidebar>
+        <div className="fixed inset-0 -z-10 pointer-events-none">
+          <Particles
+            particleColors={["#ffffff"]}
+            particleCount={200}
+            particleSpread={10}
+            speed={0.01}
+            particleBaseSize={100}
+          />
+        </div>
+        <div className="flex h-screen bg-transparent overflow-hidden">
+          <AppSidebar />
+          <div className="flex-1 flex flex-col relative overflow-y-auto">
+            {children}
+          </div>
+        </div>
+      </Sidebar>
     </SessionProvider>
-    
   );
 }

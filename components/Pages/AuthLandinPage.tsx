@@ -8,7 +8,8 @@ import Reveal from '../Anime/Reveal';
 import HeroSectionOne from '../hero-section-demo-1';
 import LightRays from '../LightRays';
 import AuthHero from '../AuthHero';
-
+import AuthResume from '../AuthResume';
+import AuthTrainerSection from '../ui/AuthTrainer';
 const AuthLandingPage = () => {
   return (
     // Outer div for the entire application wrapper
@@ -28,15 +29,15 @@ const AuthLandingPage = () => {
   />
   
 </div>
-    <div className="min-h-screen pt-24"> 
-      <AuthNavbar /> {/* Using the Authenticated Navbar here */}
+    <div className="min-h-screen mt-24"> 
+      <AuthNavbar />
       
       <main>
         <Reveal>
           <AuthHero/>
         </Reveal>
-        <Reveal><ResumeEnhancerSection /></Reveal>
-        <Reveal><AIBasedTrainerSection /></Reveal>
+        <Reveal><AuthResume/></Reveal>
+        <Reveal><AuthTrainerSection /></Reveal>
         
         
       </main>

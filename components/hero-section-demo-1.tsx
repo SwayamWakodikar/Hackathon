@@ -63,9 +63,21 @@ export default function HeroSectionOne() {
               }}
               className="relative inline-block mt-2"
             >
-              <span className="relative z-10 text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-blue-600 to-cyan-400 font-black italic uppercase tracking-tighter drop-shadow-[0_0_30px_rgba(37,99,235,0.5)]">
-                Vplace
-              </span>
+              <span className="relative inline-block font-black italic uppercase tracking-tighter">
+  <span
+    className="
+      relative z-10
+      px-3
+      text-transparent bg-clip-text
+      bg-linear-to-r from-blue-400 via-blue-600 to-cyan-400
+      drop-shadow-[0_0_30px_rgba(37,99,235,0.5)]
+    "
+    style={{ WebkitTextStroke: "0.5px transparent" }}
+  >
+    VPLACE
+  </span>
+</span>
+
               {/* Subtle underline glow */}
               <motion.div 
                 initial={{ width: 0 }}

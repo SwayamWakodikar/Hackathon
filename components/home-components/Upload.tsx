@@ -112,8 +112,8 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
           className={`border-2 border-dashed rounded-lg p-12 text-center transition-all ${
             dragActive
               ? isDark
-                ? "border-purple-400 bg-purple-900/20"
-                : "border-purple-500 bg-purple-50"
+                ? "border-blue-400 bg-blue-900/20"
+                : "border-blue-500 bg-blue-50"
               : isDark
               ? "border-gray-600 hover:border-gray-500"
               : "border-gray-300 hover:border-gray-400"
@@ -165,7 +165,7 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
           <Button
             type="button"
             variant="outline"
-            className="cursor-pointer border-2! border-purple-600! text-purple-600! hover:bg-purple-50!"
+            className="cursor-pointer border-2! border-blue-600! text-blue-600! hover:bg-blue-50!"
             onClick={() => document.getElementById("file-upload")?.click()}
           >
             Browse Files
@@ -174,7 +174,7 @@ export default function UploadTab({ isDark, onGenerate }: UploadTabProps) {
         {uploadedFile && (
           <Button
             className={`w-full mt-6 ${
-              !isDark ? "bg-purple-600 hover:bg-purple-700 text-white" : ""
+              !isDark ? "bg-blue-600 hover:bg-blue-700 text-white" : ""
             }`}
             size="lg"
             onClick={handleGenerate}
