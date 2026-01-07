@@ -1,13 +1,12 @@
 "use client";
 
-import React from 'react'
+import React from 'react';
+import AIInterviewPreview from '@/components/Pages/AIInterviewPreview';
 
 const page = () => {
   return (
-    <>
-        <h1>AI Interview</h1>
-    </>
+    <AIInterviewPreview />
   )
 }
 
-export default page
+export default page;
