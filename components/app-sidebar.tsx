@@ -76,14 +76,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarHeader>
             <SidebarContent>
                 <SidebarMenu>
-                    <SidebarMenuItem>
+                    {/* <SidebarMenuItem>
                         <SidebarMenuButton asChild tooltip="Home">
                             <a href="/resume/home">
                                 <IconHome className="text-zinc-400 size-8 shrink-0" />
                                 <span className="transition-opacity duration-200 whitespace-nowrap">Home</span>
                             </a>
                         </SidebarMenuButton>
-                    </SidebarMenuItem>
+                    </SidebarMenuItem> */}
 
                     <SidebarMenuItem>
                         <SidebarMenuButton
