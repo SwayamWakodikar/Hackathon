@@ -29,6 +29,7 @@ const AIInterviewPage = () => {
   const techQuestions = MOCK_QUESTIONS_DATA.google?.questions?.slice(0, MAX_QUESTIONS - 1) || [];
 
   const [stream, setStream] = useState<MediaStream | null>(null);
+  const [isCameraOn, setIsCameraOn] = useState(true);
 
   useEffect(() => {
     // 1. Initialize camera immediately for preview
@@ -187,13 +188,7 @@ const AIInterviewPage = () => {
     setReport({ technical, confidence, clarity, communication, depth, overall });
   };
 
-  if (report) return <ScoreCard report={report} />;
-
-  if (report) return <ScoreCard report={report} />;
-
   /* Camera Toggle Logic */
-  const [isCameraOn, setIsCameraOn] = useState(true);
-
   const toggleCamera = () => {
     if (stream) {
       stream.getVideoTracks().forEach(track => {
@@ -202,6 +197,8 @@ const AIInterviewPage = () => {
       setIsCameraOn(!isCameraOn);
     }
   };
+
+  if (report) return <ScoreCard report={report} />;
 
   return (
     <div className="relative h-screen w-full bg-[#202124] overflow-hidden flex items-center justify-center p-4 lg:p-8">
