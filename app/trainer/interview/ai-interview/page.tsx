@@ -6,7 +6,7 @@ import Particles from "@/components/Particles";
 import { IconMicrophone, IconPlayerPlay, IconChartBar, IconCpu, IconVideo, IconVideoOff, IconPhoneOff } from "@tabler/icons-react";
 
 const MOUTH_SHAPES_COUNT = 8;
-const MAX_QUESTIONS = 5;
+const MAX_QUESTIONS = 3;
 const MOUTH_UPDATE_SPEED = 300; 
 const SILENCE_TIMEOUT = 7000; 
 
@@ -26,9 +26,10 @@ const AIInterviewPage = () => {
   const recognitionRef = useRef<any>(null);
   const isListeningRef = useRef(false);
 
-  const techQuestions = MOCK_QUESTIONS_DATA.google.questions.slice(0, MAX_QUESTIONS - 1);
+  const techQuestions = MOCK_QUESTIONS_DATA.google?.questions?.slice(0, MAX_QUESTIONS - 1) || [];
 
   const [stream, setStream] = useState<MediaStream | null>(null);
+  const [isCameraOn, setIsCameraOn] = useState(true);
 
   useEffect(() => {
     // 1. Initialize camera immediately for preview
@@ -125,10 +126,12 @@ const AIInterviewPage = () => {
     recognition.onstart = () => { isListeningRef.current = true; };
     recognition.onend = () => { isListeningRef.current = false; };
     recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript;
-      if (transcript.length > 1) proceedToNext(transcript, false);
+      if (event.results && event.results[0] && event.results[0][0]) {
+        const transcript = event.results[0][0].transcript;
+        if (transcript.length > 1) proceedToNext(transcript, false);
+      }
     };
-    try { recognition.start(); } catch (err) {}
+    try { recognition.start(); } catch (err) { console.error("Speech start error", err); }
   };
 
   const proceedToNext = (answer: string, isTimeout: boolean) => {
@@ -140,9 +143,14 @@ const AIInterviewPage = () => {
     const idx = questionIndexRef.current;
 
     if (idx < MAX_QUESTIONS) {
-      const nextQ = techQuestions[idx - 1].question;
-      const response = isTimeout ? "I didn't catch that." : "Understood.";
-      handleAiTurn(`${response} Next, ${nextQ}`);
+      const nextQObj = techQuestions[idx - 1];
+      if (nextQObj) {
+        const nextQ = nextQObj.question;
+        const response = isTimeout ? "I didn't catch that." : "Understood.";
+        handleAiTurn(`${response} Next, ${nextQ}`);
+      } else {
+        setTimeout(generateActualRatings, 1200);
+      }
     } else {
       setTimeout(generateActualRatings, 1200);
     }
@@ -160,28 +168,27 @@ const AIInterviewPage = () => {
   };
 
   const generateActualRatings = () => {
-    const answers = userAnswersRef.current;
-    const avgLen = answers.reduce((a, b) => a + b.length, 0) / answers.length;
+    if (recognitionRef.current) { 
+        try { recognitionRef.current.stop(); } catch(e) {} 
+    }
+    if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+
+    const answers = userAnswersRef.current || [];
+    const avgLen = answers.length > 0 ? answers.reduce((a, b) => a + b.length, 0) / answers.length : 0;
     
-    // RESTORED 5-PARAMETER LOGIC
-    const technical = Math.min(10, Math.floor(avgLen / 15) + 3);
-    const confidence = Math.max(1, 10 - (silenceCountRef.current * 2));
+    // RESTORED 5-PARAMETER LOGIC with NaN checks
+    const technical = Math.min(10, Math.floor(avgLen / 15) + 3) || 5;
+    const confidence = Math.max(1, 10 - (silenceCountRef.current * 2)) || 7;
     const clarity = answers.filter(a => a.length > 10).length >= 3 ? 9 : 6;
-    const communication = Math.min(10, Math.floor(avgLen / 20) + 4);
-    const depth = Math.min(10, Math.floor(avgLen / 25) + 3);
+    const communication = Math.min(10, Math.floor(avgLen / 20) + 4) || 6;
+    const depth = Math.min(10, Math.floor(avgLen / 25) + 3) || 5;
 
     const overall = ((technical + confidence + clarity + communication + depth) / 5).toFixed(1);
 
     setReport({ technical, confidence, clarity, communication, depth, overall });
   };
 
-  if (report) return <ScoreCard report={report} />;
-
-  if (report) return <ScoreCard report={report} />;
-
   /* Camera Toggle Logic */
-  const [isCameraOn, setIsCameraOn] = useState(true);
-
   const toggleCamera = () => {
     if (stream) {
       stream.getVideoTracks().forEach(track => {
@@ -190,6 +197,8 @@ const AIInterviewPage = () => {
       setIsCameraOn(!isCameraOn);
     }
   };
+
+  if (report) return <ScoreCard report={report} />;
 
   return (
     <div className="relative h-screen w-full bg-[#202124] overflow-hidden flex items-center justify-center p-4 lg:p-8">
