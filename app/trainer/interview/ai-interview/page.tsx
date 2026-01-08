@@ -3,97 +3,158 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MOCK_QUESTIONS_DATA } from '@/lib/questions'; //
 
-// --- TUNED CONFIGURATION ---
 const MOUTH_SHAPES_COUNT = 8;
 const MAX_QUESTIONS = 5;
-const SENSITIVITY = 1.1;        // LOWER: More natural movement
-const MOUTH_UPDATE_SPEED = 140; // SLOWER: 7-8 frames per second
+const MOUTH_UPDATE_SPEED = 250; 
 
 const AIInterviewPage = () => {
   const [mouthIndex, setMouthIndex] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
-  const [currentIdx, setCurrentIdx] = useState(0); // For UI
+  const [currentIdx, setCurrentIdx] = useState(0); 
   const [isAiSpeaking, setIsAiSpeaking] = useState(false);
   const [report, setReport] = useState<any>(null);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   
-  // Ref handles the logic to avoid "stale closures" (Getting stuck at Q2)
+  // REFS: Keep data safe from re-renders and stale closures
   const questionIndexRef = useRef(0);
+  const userAnswersRef = useRef<string[]>([]);
   const mouthTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const recognitionRef = useRef<any>(null);
+  const isListeningRef = useRef(false);
 
-  // Load Google questions
+  // Load Google questions from your library
   const questions = MOCK_QUESTIONS_DATA.google.questions.slice(0, MAX_QUESTIONS);
 
-  // 1. START INTERVIEW
+  useEffect(() => {
+    const loadVoices = () => {
+      const availableVoices = window.speechSynthesis.getVoices();
+      setVoices(availableVoices);
+    };
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+
+    return () => {
+      stopMouthAnimation();
+      if (recognitionRef.current) recognitionRef.current.stop();
+    };
+  }, []);
+
   const startInterview = () => {
     setIsStarted(true);
-    const firstQ = `Welcome. Question 1: ${questions[0].question}`;
+    const firstQ = `Namaste! I am your interviewer. Let's begin. Question 1: ${questions[0].question}`;
     handleAiTurn(firstQ);
   };
 
-  // 2. AI TURN: Speaking + Sync
   const handleAiTurn = (text: string) => {
     setIsAiSpeaking(true);
     const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9; // Slightly slower, more professional voice
+
+    // Accent: Indian English
+    const indianVoice = voices.find(v => v.lang === 'en-IN' || v.name.includes('India'));
+    if (indianVoice) utterance.voice = indianVoice;
+    
+    utterance.rate = 0.85; 
+    utterance.pitch = 1.0; 
 
     startMouthAnimation();
 
     utterance.onend = () => {
       stopMouthAnimation();
       setIsAiSpeaking(false);
-      
-      // Only listen if we have more questions to ask or the final one was just asked
-      if (questionIndexRef.current < MAX_QUESTIONS) {
-        startUserListening();
-      }
+      setTimeout(() => {
+        if (questionIndexRef.current < MAX_QUESTIONS) {
+          startUserListening();
+        }
+      }, 500);
     };
 
     synth.speak(utterance);
   };
 
-  // 3. USER TURN: Listen for answer
   const startUserListening = () => {
+    if (isListeningRef.current || isAiSpeaking) return; 
+
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) return;
 
     const recognition = new SpeechRecognition();
-    recognition.start();
+    recognitionRef.current = recognition;
+    recognition.lang = 'en-IN'; 
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = () => { isListeningRef.current = true; };
+    recognition.onend = () => { isListeningRef.current = false; };
 
     recognition.onresult = (event: any) => {
-      // Increment the Ref immediately so the next turn is guaranteed to be Q+1
+      const transcript = event.results[0][0].transcript;
+      if (transcript.length < 2) return;
+
+      // STORE THE ANSWER FOR RATING
+      userAnswersRef.current.push(transcript);
+
       questionIndexRef.current += 1;
       const nextIdx = questionIndexRef.current;
       setCurrentIdx(nextIdx);
 
       if (nextIdx < MAX_QUESTIONS) {
         const nextQ = questions[nextIdx].question;
-        setTimeout(() => {
-          handleAiTurn(`Got it. Question ${nextIdx + 1}: ${nextQ}`);
-        }, 1000);
+        handleAiTurn(`Got it. Next question: ${nextQ}`);
       } else {
-        // Finished all questions
-        setTimeout(generateFinalReport, 1500);
+        setTimeout(generateActualRatings, 1500);
       }
     };
+
+    recognition.onerror = (e: any) => {
+      isListeningRef.current = false;
+      if (e.error === 'no-speech' && !isAiSpeaking) {
+        setTimeout(() => { if (!isListeningRef.current) startUserListening(); }, 600);
+      }
+    };
+
+    try { recognition.start(); } catch (err) {}
   };
 
-  // 4. SMOOTH SYNC LOGIC
   const startMouthAnimation = () => {
+    if (mouthTimerRef.current) clearInterval(mouthTimerRef.current);
     mouthTimerRef.current = setInterval(() => {
-      // Logic: Pick a random frame but keep it low for "calm" speech
-      const frame = Math.floor(Math.random() * (MOUTH_SHAPES_COUNT / SENSITIVITY));
-      setMouthIndex(frame);
+      setMouthIndex(Math.floor(Math.random() * MOUTH_SHAPES_COUNT));
     }, MOUTH_UPDATE_SPEED);
   };
 
   const stopMouthAnimation = () => {
-    if (mouthTimerRef.current) clearInterval(mouthTimerRef.current);
+    if (mouthTimerRef.current) {
+      clearInterval(mouthTimerRef.current);
+      mouthTimerRef.current = null;
+    }
     setMouthIndex(0);
   };
 
-  const generateFinalReport = () => {
-    setReport({ confidence: 8, technical: 9, clarity: 7, depth: 8, communication: 9, overall: 8.2 });
+  // --- ACTUAL RATING ENGINE ---
+  const generateActualRatings = () => {
+    const answers = userAnswersRef.current;
+    
+    // Logic: Calculate scores based on transcript depth and length
+    const avgLength = answers.reduce((acc, val) => acc + val.length, 0) / answers.length;
+    
+    // Heuristic Scoring (Out of 10)
+    const technical = Math.min(10, Math.floor(avgLength / 15) + 2);
+    const confidence = answers.every(a => a.length > 10) ? 9 : 6;
+    const clarity = answers.length >= MAX_QUESTIONS ? 8 : 5;
+    const communication = Math.min(10, Math.floor(avgLength / 20) + 4);
+    const depth = Math.min(10, Math.floor(avgLength / 25) + 3);
+
+    const overall = ((technical + confidence + clarity + communication + depth) / 5).toFixed(1);
+
+    setReport({
+      confidence,
+      technical,
+      clarity,
+      communication,
+      depth,
+      overall
+    });
   };
 
   if (report) return <ScoreCard report={report} />;
@@ -101,24 +162,26 @@ const AIInterviewPage = () => {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6 text-white">
       <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-blue-600 shadow-2xl bg-zinc-900">
-        <img src="/avatar/face_base.jpeg" className="absolute inset-0 w-full h-full object-cover z-10" alt="Avatar" />
+        <img src="/avatar/face_base.jpeg" className="absolute inset-0 w-full h-full object-cover z-10" />
         {isAiSpeaking && (
-          <img key={mouthIndex} src={`/avatar/mouth_${mouthIndex}.jpeg`} className="absolute inset-0 w-full h-full object-cover z-20" alt="Mouth" />
+          <img key={mouthIndex} src={`/avatar/mouth_${mouthIndex}.jpeg`} className="absolute inset-0 w-full h-full object-cover z-20" />
         )}
         {!isStarted && (
           <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-md">
-            <button onClick={startInterview} className="px-8 py-4 bg-blue-600 rounded-xl font-bold">Start Session</button>
+            <button onClick={startInterview} className="px-8 py-4 bg-blue-600 rounded-xl font-bold hover:scale-105 transition-all">
+              Begin Session
+            </button>
           </div>
         )}
       </div>
       
       {isStarted && (
         <div className="mt-8 text-center">
-          <p className="text-blue-400 font-mono uppercase tracking-widest text-sm animate-pulse">
-            {isAiSpeaking ? "Interviewer Speaking..." : "Listening..."}
+          <p className={`font-mono uppercase tracking-widest text-sm ${!isAiSpeaking ? 'text-green-400 animate-pulse' : 'text-blue-400'}`}>
+            {isAiSpeaking ? "Interviewer Speaking..." : "Ear Active: Answer Now"}
           </p>
-          <p className="text-zinc-500 text-xs mt-2 uppercase tracking-widest">
-            Question {currentIdx + 1} of {MAX_QUESTIONS}
+          <p className="text-zinc-500 text-xs mt-2 uppercase tracking-[0.2em]">
+            Step {currentIdx + 1} of {MAX_QUESTIONS}
           </p>
         </div>
       )}
@@ -126,10 +189,9 @@ const AIInterviewPage = () => {
   );
 };
 
-// --- SCORECARD COMPONENT (Rating out of 10) ---
 const ScoreCard = ({ report }: { report: any }) => (
     <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center p-10 text-white">
-      <h1 className="text-4xl font-black mb-10 text-blue-500 italic tracking-tighter">REPORT CARD</h1>
+      <h1 className="text-4xl font-black mb-10 text-blue-500 italic">SESSION ASSESSMENT</h1>
       <div className="grid grid-cols-2 gap-6 w-full max-w-2xl">
         {Object.entries(report).map(([key, val]) => (
           key !== 'overall' && (
@@ -140,8 +202,7 @@ const ScoreCard = ({ report }: { report: any }) => (
           )
         ))}
       </div>
-      <div className="mt-12 text-center">
-        <p className="text-zinc-500 uppercase text-xs tracking-[0.3em] mb-2">Final Evaluation</p>
+      <div className="mt-12 text-center pt-8 border-t border-white/10 w-full max-w-md">
         <p className="text-7xl font-black text-blue-600">{report.overall}/10</p>
       </div>
     </div>
