@@ -1,81 +1,37 @@
 "use client";
 
 import React from "react";
-import { SessionProvider, useSession } from "next-auth/react";
-import { Sidebar, SidebarBody, SidebarLink, useSidebar } from "@/components/ui/sidebar";
-import {
-  IconHome,
-  IconDeviceLaptop,
-  IconClipboardCheck,
-  IconLogout,
-} from "@tabler/icons-react";
+import { SessionProvider } from "next-auth/react";
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 import Particles from "@/components/Particles";
-
-// Extracted Sidebar Component
-const AppSidebar = () => {
-  const { open } = useSidebar();
-  const { data: session } = useSession();
-
-  return (
-    <SidebarBody className="h-full justify-between overflow-hidden">
-      <div className="flex flex-col gap-8">
-        <div className="flex items-center">
-          <div className="h-8 w-8 shrink-0 flex items-center justify-center rounded-md bg-blue-600">
-            <a href="/welcome">
-            <img src="/letter-v.svg" alt="VPlace Logo" className="h-5 w-5" />
-            </a>
-          </div>
-          <a href="/welcome" className={`ml-2 text-lg font-semibold whitespace-nowrap text-white transition-all duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-            Vplace
-          </a>
-        </div>
-
-        <div className="flex flex-col items-center md:items-start gap-3">
-          <SidebarLink link={{ label: "Home", href: "/trainer", icon: <IconHome className="h-5 w-5 shrink-0" /> }} />
-          <SidebarLink link={{ label: "Mock Test", href: "/trainer/mocktest", icon: <IconClipboardCheck className="h-5 w-5 shrink-0" /> }} />
-          <SidebarLink link={{ label: "AI Interview", href: "/trainer/interview", icon: <IconDeviceLaptop className="h-5 w-5 shrink-0" /> }} />
-          <SidebarLink link={{ label: "Logout", href: "/api/auth/signout?callbackUrl=/", icon: <IconLogout className="h-5 w-5 shrink-0" /> }} />
-        </div>
-      </div>
-
-      <div className="flex items-center py-3 border-t border-gray-800 min-w-8">
-        <div className="h-8 w-8 shrink-0 flex-none">
-          {session?.user?.image ? (
-            <img src={session.user.image} className="h-8 w-8 rounded-full border border-blue-500/50" alt="User" />
-          ) : (
-            <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
-              {session?.user?.name?.charAt(0) || "U"}
-            </div>
-          )}
-        </div>
-        <span className={`ml-2 text-sm font-medium text-gray-200 transition-all ${open ? "opacity-100" : "opacity-0 w-0 overflow-hidden"}`}>
-          {session?.user?.name || "User"}
-        </span>
-      </div>
-    </SidebarBody>
-  );
-};
 
 export default function TrainerLayout({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
-      <Sidebar>
-        <div className="fixed inset-0 -z-10 pointer-events-none">
+      <SidebarProvider defaultOpen={false}>
+        {/* Background Particles */}
+        <div className="fixed inset-0 -z-10 pointer-events-none bg-[#030303]">
           <Particles
-            particleColors={["#ffffff"]}
-            particleCount={200}
-            particleSpread={10}
-            speed={0.01}
-            particleBaseSize={100}
+            particleColors={["#3b82f6", "#ffffff"]}
+            particleCount={150}
+            particleSpread={15}
+            speed={0.005}
+            particleBaseSize={80}
           />
         </div>
-        <div className="flex h-screen bg-transparent overflow-hidden">
-          <AppSidebar />
-          <div className="flex-1 flex flex-col relative overflow-y-auto">
+
+        <AppSidebar />
+
+        <SidebarInset className="bg-transparent flex flex-col h-screen overflow-hidden">
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b border-white/5 px-4 bg-black/20 backdrop-blur-sm">
+            {/* SidebarTrigger removed */}
+          </header>
+          <div className="flex-1 overflow-y-auto bg-black/20 relative">
             {children}
           </div>
-        </div>
-      </Sidebar>
+        </SidebarInset>
+      </SidebarProvider>
     </SessionProvider>
   );
 }

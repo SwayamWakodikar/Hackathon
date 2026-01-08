@@ -4,8 +4,6 @@ import Landingpage from '../components/Pages/landingpage';
 
 const App = () => { 
   return (
-    // We keep the main container transparent so the LandingPage's 
-    // fixed background is always visible behind everything.
     <div className="min-h-screen selection:bg-blue-500/30 selection:text-white">
       
       <main>
