@@ -11,7 +11,8 @@ import {
     IconCertificate,
     IconLogout,
     IconChevronRight,
-    IconBriefcase
+    IconBriefcase,
+    IconDashboard
 } from "@tabler/icons-react"
 import { useSession, signOut } from "next-auth/react"
 import { usePathname } from "next/navigation"
@@ -119,11 +120,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                                 <SidebarMenuSubItem>
-                                    <SidebarMenuSubButton asChild href="/resume/home#ResumeBuilder">
+                                    <SidebarMenuSubButton asChild href="/resume/generated-resume">
                                         <a className="flex items-center gap-2">
-                                            <IconSparkles className="size-4 shrink-0" />
-                                            <span className="transition-opacity duration-200 whitespace-nowrap">Resume Enhancer</span>
-                                        </a>
+                                            <IconDashboard className="size-4 shrink-0" />
+                                            <span className="transition-opacity duration-200 whitespace-nowrap">Generated Resume</span>
+                                        </a>    
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                             </SidebarMenuSub>
