@@ -62,11 +62,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild className="hover:bg-transparent active:bg-transparent p-0">
                             <a href="/welcome">
-                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-600 text-sidebar-primary-foreground shadow-[0_0_15px_rgba(37,99,235,0.4)]">
-                                    <img src="/letter-v.svg" alt="VPlace Logo" className="size-4 invert" />
+                                <div className="flex aspect-square size-8 items-center justify-center">
+                                    <img src="/V-logo.png" alt="VPlace Logo" className="size-8  " />
                                 </div>
                                 <div className="flex flex-col gap-0.5 leading-none transition-opacity duration-200">
-                                    <span className="font-bold italic tracking-tighter text-white text-lg transition-opacity duration-200 whitespace-nowrap">Vplace</span>
+                                    <span className="font-bold italic tracking-tighter text-blue-500 text-2xl transition-opacity duration-200 whitespace-nowrap">Vplace</span>
                                     <span className="text-xs font-medium text-zinc-500 transition-opacity duration-200 whitespace-nowrap">Dashboard</span>
                                 </div>
                             </a>
