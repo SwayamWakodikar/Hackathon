@@ -59,25 +59,21 @@ Node.js
 npm or yarn
 ```
 3. Installation
-Copy code
-Bash
+npm
 ```
 npm install
 ```
 or
-Copy code
-Bash
+yarn
 ```
 yarn install
 ```
 5. Run Development Server
-Copy code
 Bash
 ```
 npm run dev
 ```
 or
-Copy code
 Bash
 ```
 yarn dev
